@@ -35,7 +35,7 @@ This template will serve as a quick-start for those who do not wish to use an ID
 
 ##Loading the image on the board
 
-If you have OpenOCD installed 'make program' can be used to flash the .bin file to the board. OpenOCD must be installed with stlink enabled. Clone [the git repository](http://openocd.git.sourceforge.net/git/gitweb.cgi?p=openocd/openocd;a=summary) and use these commands to compile/install it:
+If you have OpenOCD (at least v0.6.1) installed 'make program' can be used to flash the .bin file to the board. OpenOCD must be installed with stlink enabled. Clone [the git repository](http://openocd.git.sourceforge.net/git/gitweb.cgi?p=openocd/openocd;a=summary) and use these commands to compile/install it:
 
     ./bootstrap
     ./configure --prefix=/usr --enable-maintainer-mode --enable-stlink
