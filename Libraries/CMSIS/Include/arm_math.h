@@ -1,30 +1,30 @@
-/* ----------------------------------------------------------------------   
- * Copyright (C) 2010 ARM Limited. All rights reserved.   
- *   
- * $Date:        15. July 2011  
- * $Revision: 	V1.0.10  
- *   
- * Project: 	    CMSIS DSP Library   
+/* ----------------------------------------------------------------------
+ * Copyright (C) 2010-2011 ARM Limited. All rights reserved.
+ *
+ * $Date:        15. July 2011
+ * $Revision: 	V1.0.10
+ *
+ * Project: 	    CMSIS DSP Library
  * Title:	     arm_math.h
- *   
+ *
  * Description:	 Public header file for CMSIS DSP Library
- *   
+ *
  * Target Processor: Cortex-M4/Cortex-M3/Cortex-M0
- *  
- * Version 1.0.10 2011/7/15 
- *    Big Endian support added and Merged M0 and M3/M4 Source code.  
- *   
- * Version 1.0.3 2010/11/29  
- *    Re-organized the CMSIS folders and updated documentation.   
- *    
- * Version 1.0.2 2010/11/11   
- *    Documentation updated.    
- *   
- * Version 1.0.1 2010/10/05    
- *    Production release and review comments incorporated.   
- *   
- * Version 1.0.0 2010/09/20    
- *    Production release and review comments incorporated.   
+ *
+ * Version 1.0.10 2011/7/15
+ *    Big Endian support added and Merged M0 and M3/M4 Source code.
+ *
+ * Version 1.0.3 2010/11/29
+ *    Re-organized the CMSIS folders and updated documentation.
+ *
+ * Version 1.0.2 2010/11/11
+ *    Documentation updated.
+ *
+ * Version 1.0.1 2010/10/05
+ *    Production release and review comments incorporated.
+ *
+ * Version 1.0.0 2010/09/20
+ *    Production release and review comments incorporated.
  * -------------------------------------------------------------------- */
 
 /**
@@ -32,7 +32,7 @@
    *
    * <b>Introduction</b>
    *
-   * This user manual describes the CMSIS DSP software library, 
+   * This user manual describes the CMSIS DSP software library,
    * a suite of common signal processing functions for use on Cortex-M processor based devices.
    *
    * The library is divided into a number of modules each covering a specific category:
@@ -48,20 +48,20 @@
    * - Interpolation functions
    *
    * The library has separate functions for operating on 8-bit integers, 16-bit integers,
-   * 32-bit integer and 32-bit floating-point values. 
+   * 32-bit integer and 32-bit floating-point values.
    *
    * <b>Processor Support</b>
    *
-   * The library is completely written in C and is fully CMSIS compliant. 
-   * High performance is achieved through maximum use of Cortex-M4 intrinsics. 
+   * The library is completely written in C and is fully CMSIS compliant.
+   * High performance is achieved through maximum use of Cortex-M4 intrinsics.
    *
    * The supplied library source code also builds and runs on the Cortex-M3 and Cortex-M0 processor,
-   * with the DSP intrinsics being emulated through software. 
+   * with the DSP intrinsics being emulated through software.
    *
    *
    * <b>Toolchain Support</b>
    *
-   * The library has been developed and tested with MDK-ARM version 4.21. 
+   * The library has been developed and tested with MDK-ARM version 4.21.
    * The library is being tested in GCC and IAR toolchains and updates on this activity will be made available shortly.
    *
    * <b>Using the Library</b>
@@ -77,9 +77,9 @@
    * - arm_cortexM0b_math.lib (Big endian on Cortex-M3)
    *
    * The library functions are declared in the public file <code>arm_math.h</code> which is placed in the <code>Include</code> folder.
-   * Simply include this file and link the appropriate library in the application and begin calling the library functions. The Library supports single 
-   * public header file <code> arm_math.h</code> for Cortex-M4/M3/M0 with little endian and big endian. Same header file will be used for floating point unit(FPU) variants. 
-   * Define the appropriate pre processor MACRO ARM_MATH_CM4 or  ARM_MATH_CM3 or 
+   * Simply include this file and link the appropriate library in the application and begin calling the library functions. The Library supports single
+   * public header file <code>arm_math.h</code> for Cortex-M4/M3/M0 with little endian and big endian. Same header file will be used for floating point unit(FPU) variants.
+   * Define the appropriate pre processor MACRO ARM_MATH_CM4 or  ARM_MATH_CM3 or
    * ARM_MATH_CM0 depending on the target processor in the application.
    *
    * <b>Examples</b>
@@ -88,11 +88,11 @@
    *
    * <b>Building the Library</b>
    *
-   * The library installer contains project files to re build libraries on MDK Tool chain in the <code>CMSIS\DSP_Lib\Source\ARM</code> folder.
+   * The library installer contains project files to re build libraries on MDK Tool chain in the <code>CMSIS\\DSP_Lib\\Source\\ARM</code> folder.
    * - arm_cortexM0b_math.uvproj
    * - arm_cortexM0l_math.uvproj
    * - arm_cortexM3b_math.uvproj
-   * - arm_cortexM3l_math.uvproj  
+   * - arm_cortexM3l_math.uvproj
    * - arm_cortexM4b_math.uvproj
    * - arm_cortexM4l_math.uvproj
    * - arm_cortexM4bf_math.uvproj
@@ -114,7 +114,7 @@
    * Define macro for rounding on support functions
    *
    * <b>__FPU_PRESENT:</b>
-   * Initialize macro __FPU_PRESENT = 1 when building on FPU supported Targets. Enable this macro for M4bf and M4lf libraries 
+   * Initialize macro __FPU_PRESENT = 1 when building on FPU supported Targets. Enable this macro for M4bf and M4lf libraries
    *
    *
    * The project can be built by opening the appropriate project in MDK-ARM 4.21 chain and defining the optional pre processor MACROs detailed above.
@@ -212,7 +212,7 @@
  *     ARM_MATH_SUCCESS
  * </pre>
  * There is some overhead associated with this matrix size checking.
- * The matrix size checking is enabled via the #define
+ * The matrix size checking is enabled via the \#define
  * <pre>
  *     ARM_MATH_MATRIX_CHECK
  * </pre>
@@ -367,20 +367,20 @@ extern "C"
                                 (((int32_t)(v1) <<  8) & (int32_t)0x0000FF00) |	\
 							    (((int32_t)(v2) << 16) & (int32_t)0x00FF0000) |	\
 							    (((int32_t)(v3) << 24) & (int32_t)0xFF000000)  )
-#else								
+#else
 
 #define __PACKq7(v0,v1,v2,v3) ( (((int32_t)(v3) <<  0) & (int32_t)0x000000FF) |	\
                                 (((int32_t)(v2) <<  8) & (int32_t)0x0000FF00) |	\
 							    (((int32_t)(v1) << 16) & (int32_t)0x00FF0000) |	\
 							    (((int32_t)(v0) << 24) & (int32_t)0xFF000000)  )
-								
+
 #endif
 
 
   /**
    * @brief Clips Q63 to Q31 values.
    */
-  static __INLINE q31_t clip_q63_to_q31(
+  __STATIC_INLINE q31_t clip_q63_to_q31(
 					q63_t x)
   {
     return ((q31_t) (x >> 32) != ((q31_t) x >> 31)) ?
@@ -390,7 +390,7 @@ extern "C"
   /**
    * @brief Clips Q63 to Q15 values.
    */
-  static __INLINE q15_t clip_q63_to_q15(
+  __STATIC_INLINE q15_t clip_q63_to_q15(
 					q63_t x)
   {
     return ((q31_t) (x >> 32) != ((q31_t) x >> 31)) ?
@@ -400,7 +400,7 @@ extern "C"
   /**
    * @brief Clips Q31 to Q7 values.
    */
-  static __INLINE q7_t clip_q31_to_q7(
+  __STATIC_INLINE q7_t clip_q31_to_q7(
 				      q31_t x)
   {
     return ((q31_t) (x >> 24) != ((q31_t) x >> 23)) ?
@@ -410,7 +410,7 @@ extern "C"
   /**
    * @brief Clips Q31 to Q15 values.
    */
-  static __INLINE q15_t clip_q31_to_q15(
+  __STATIC_INLINE q15_t clip_q31_to_q15(
 					q31_t x)
   {
     return ((q31_t) (x >> 16) != ((q31_t) x >> 15)) ?
@@ -421,7 +421,7 @@ extern "C"
    * @brief Multiplies 32 X 64 and returns 32 bit result in 2.30 format.
    */
 
-  static __INLINE q63_t mult32x64(
+  __STATIC_INLINE q63_t mult32x64(
 				  q63_t x,
 				  q31_t y)
   {
@@ -432,14 +432,18 @@ extern "C"
 
 #if defined (ARM_MATH_CM0) && defined ( __CC_ARM   )
 #define __CLZ __clz
-#endif 
+#endif
 
-#if defined (ARM_MATH_CM0) && ((defined (__ICCARM__)) ||(defined (__GNUC__)) || defined (__TASKING__) )
+#if defined (ARM_MATH_CM0) && defined ( __TASKING__ )
+/* No need to redefine __CLZ */
+#endif
 
-  static __INLINE  uint32_t __CLZ(q31_t data);
+#if defined (ARM_MATH_CM0) && ((defined (__ICCARM__)) ||(defined (__GNUC__)) )
+
+  __STATIC_INLINE  uint32_t __CLZ(q31_t data);
 
 
-  static __INLINE uint32_t __CLZ(q31_t data)
+  __STATIC_INLINE uint32_t __CLZ(q31_t data)
   {
 	  uint32_t count = 0;
 	  uint32_t mask = 0x80000000;
@@ -454,13 +458,13 @@ extern "C"
 
   }
 
-#endif 
+#endif
 
   /**
    * @brief Function to Calculates 1/in(reciprocal) value of Q31 Data type.
    */
 
-  static __INLINE uint32_t arm_recip_q31(
+  __STATIC_INLINE uint32_t arm_recip_q31(
 					 q31_t in,
 					 q31_t * dst,
 					 q31_t * pRecipTable)
@@ -511,7 +515,7 @@ extern "C"
   /**
    * @brief Function to Calculates 1/in(reciprocal) value of Q15 Data type.
    */
-  static __INLINE uint32_t arm_recip_q15(
+  __STATIC_INLINE uint32_t arm_recip_q15(
 					 q15_t in,
 					 q15_t * dst,
 					 q15_t * pRecipTable)
@@ -564,7 +568,7 @@ extern "C"
    */
 #if defined(ARM_MATH_CM0)
 
-  static __INLINE q31_t __SSAT(
+  __STATIC_INLINE q31_t __SSAT(
 			       q31_t x,
 			       uint32_t y)
   {
@@ -612,7 +616,7 @@ extern "C"
   /*
    * @brief C custom defined QADD8 for M3 and M0 processors
    */
-  static __INLINE q31_t __QADD8(
+  __STATIC_INLINE q31_t __QADD8(
 				q31_t x,
 				q31_t y)
   {
@@ -638,7 +642,7 @@ extern "C"
   /*
    * @brief C custom defined QSUB8 for M3 and M0 processors
    */
-  static __INLINE q31_t __QSUB8(
+  __STATIC_INLINE q31_t __QSUB8(
 				q31_t x,
 				q31_t y)
   {
@@ -667,7 +671,7 @@ extern "C"
   /*
    * @brief C custom defined QADD16 for M3 and M0 processors
    */
-  static __INLINE q31_t __QADD16(
+  __STATIC_INLINE q31_t __QADD16(
 				 q31_t x,
 				 q31_t y)
   {
@@ -690,7 +694,7 @@ extern "C"
   /*
    * @brief C custom defined SHADD16 for M3 and M0 processors
    */
-  static __INLINE q31_t __SHADD16(
+  __STATIC_INLINE q31_t __SHADD16(
 				  q31_t x,
 				  q31_t y)
   {
@@ -713,7 +717,7 @@ extern "C"
   /*
    * @brief C custom defined QSUB16 for M3 and M0 processors
    */
-  static __INLINE q31_t __QSUB16(
+  __STATIC_INLINE q31_t __QSUB16(
 				 q31_t x,
 				 q31_t y)
   {
@@ -735,7 +739,7 @@ extern "C"
   /*
    * @brief C custom defined SHSUB16 for M3 and M0 processors
    */
-  static __INLINE q31_t __SHSUB16(
+  __STATIC_INLINE q31_t __SHSUB16(
 				  q31_t x,
 				  q31_t y)
   {
@@ -757,7 +761,7 @@ extern "C"
   /*
    * @brief C custom defined QASX for M3 and M0 processors
    */
-  static __INLINE q31_t __QASX(
+  __STATIC_INLINE q31_t __QASX(
 			       q31_t x,
 			       q31_t y)
   {
@@ -773,7 +777,7 @@ extern "C"
   /*
    * @brief C custom defined SHASX for M3 and M0 processors
    */
-  static __INLINE q31_t __SHASX(
+  __STATIC_INLINE q31_t __SHASX(
 				q31_t x,
 				q31_t y)
   {
@@ -796,7 +800,7 @@ extern "C"
   /*
    * @brief C custom defined QSAX for M3 and M0 processors
    */
-  static __INLINE q31_t __QSAX(
+  __STATIC_INLINE q31_t __QSAX(
 			       q31_t x,
 			       q31_t y)
   {
@@ -812,7 +816,7 @@ extern "C"
   /*
    * @brief C custom defined SHSAX for M3 and M0 processors
    */
-  static __INLINE q31_t __SHSAX(
+  __STATIC_INLINE q31_t __SHSAX(
 				q31_t x,
 				q31_t y)
   {
@@ -834,7 +838,7 @@ extern "C"
   /*
    * @brief C custom defined SMUSDX for M3 and M0 processors
    */
-  static __INLINE q31_t __SMUSDX(
+  __STATIC_INLINE q31_t __SMUSDX(
 				 q31_t x,
 				 q31_t y)
   {
@@ -846,7 +850,7 @@ extern "C"
   /*
    * @brief C custom defined SMUADX for M3 and M0 processors
    */
-  static __INLINE q31_t __SMUADX(
+  __STATIC_INLINE q31_t __SMUADX(
 				 q31_t x,
 				 q31_t y)
   {
@@ -858,7 +862,7 @@ extern "C"
   /*
    * @brief C custom defined QADD for M3 and M0 processors
    */
-  static __INLINE q31_t __QADD(
+  __STATIC_INLINE q31_t __QADD(
 			       q31_t x,
 			       q31_t y)
   {
@@ -868,7 +872,7 @@ extern "C"
   /*
    * @brief C custom defined QSUB for M3 and M0 processors
    */
-  static __INLINE q31_t __QSUB(
+  __STATIC_INLINE q31_t __QSUB(
 			       q31_t x,
 			       q31_t y)
   {
@@ -878,7 +882,7 @@ extern "C"
   /*
    * @brief C custom defined SMLAD for M3 and M0 processors
    */
-  static __INLINE q31_t __SMLAD(
+  __STATIC_INLINE q31_t __SMLAD(
 				q31_t x,
 				q31_t y,
 				q31_t sum)
@@ -891,7 +895,7 @@ extern "C"
   /*
    * @brief C custom defined SMLADX for M3 and M0 processors
    */
-  static __INLINE q31_t __SMLADX(
+  __STATIC_INLINE q31_t __SMLADX(
 				 q31_t x,
 				 q31_t y,
 				 q31_t sum)
@@ -904,7 +908,7 @@ extern "C"
   /*
    * @brief C custom defined SMLSDX for M3 and M0 processors
    */
-  static __INLINE q31_t __SMLSDX(
+  __STATIC_INLINE q31_t __SMLSDX(
 				 q31_t x,
 				 q31_t y,
 				 q31_t sum)
@@ -917,7 +921,7 @@ extern "C"
   /*
    * @brief C custom defined SMLALD for M3 and M0 processors
    */
-  static __INLINE q63_t __SMLALD(
+  __STATIC_INLINE q63_t __SMLALD(
 				 q31_t x,
 				 q31_t y,
 				 q63_t sum)
@@ -930,7 +934,7 @@ extern "C"
   /*
    * @brief C custom defined SMLALDX for M3 and M0 processors
    */
-  static __INLINE q63_t __SMLALDX(
+  __STATIC_INLINE q63_t __SMLALDX(
 				  q31_t x,
 				  q31_t y,
 				  q63_t sum)
@@ -943,7 +947,7 @@ extern "C"
   /*
    * @brief C custom defined SMUAD for M3 and M0 processors
    */
-  static __INLINE q31_t __SMUAD(
+  __STATIC_INLINE q31_t __SMUAD(
 				q31_t x,
 				q31_t y)
   {
@@ -955,7 +959,7 @@ extern "C"
   /*
    * @brief C custom defined SMUSD for M3 and M0 processors
    */
-  static __INLINE q31_t __SMUSD(
+  __STATIC_INLINE q31_t __SMUSD(
 				q31_t x,
 				q31_t y)
   {
@@ -1081,7 +1085,7 @@ extern "C"
    * @return The function returns ARM_MATH_SUCCESS if initialization was successful or ARM_MATH_ARGUMENT_ERROR if
    * <code>numTaps</code> is not a supported value.
    */
-   
+
        arm_status arm_fir_init_q15(
 			      arm_fir_instance_q15 * S,
 			      uint16_t numTaps,
@@ -1482,7 +1486,7 @@ extern "C"
    * @param[in]       *pSrcA  points to the first input matrix structure
    * @param[in]       *pSrcB  points to the second input matrix structure
    * @param[out]      *pDst   points to output matrix structure
-   * @param[in]		  *pState points to the array for storing intermediate results  
+   * @param[in]		  *pState points to the array for storing intermediate results
    * @return     The function returns either
    * <code>ARM_MATH_SIZE_MISMATCH</code> or <code>ARM_MATH_SUCCESS</code> based on the outcome of size checking.
    */
@@ -1664,12 +1668,12 @@ extern "C"
   typedef struct
   {
     q15_t A0; 	 /**< The derived gain, A0 = Kp + Ki + Kd . */
-	#ifdef ARM_MATH_CM0  
+	#ifdef ARM_MATH_CM0
 	q15_t A1;
-	q15_t A2; 
-	#else 	      
+	q15_t A2;
+	#else
     q31_t A1;           /**< The derived gain A1 = -Kp - 2Kd | Kd.*/
-	#endif 
+	#endif
     q15_t state[3];       /**< The state array of length 3. */
     q15_t Kp;           /**< The proportional gain. */
     q15_t Ki;           /**< The integral gain. */
@@ -1736,7 +1740,7 @@ extern "C"
 			arm_pid_instance_q31 * S,
 			int32_t resetStateFlag);
 
- 
+
   /**
    * @brief  Reset function for the Q31 PID Control.
    * @param[in,out] *S points to an instance of the Q31 PID Control structure
@@ -1770,9 +1774,9 @@ extern "C"
    */
   typedef struct
   {
-    uint32_t nValues;
-    float32_t x1;
-    float32_t xSpacing;
+    uint32_t nValues;           /**< nValues */
+    float32_t x1;               /**< x1 */
+    float32_t xSpacing;         /**< xSpacing */
     float32_t *pYData;          /**< pointer to the table of Y values */
   } arm_linear_interp_instance_f32;
 
@@ -1973,7 +1977,7 @@ extern "C"
    * @param[in]     bitReverseFlag flag that enables (bitReverseFlag=1) or disables (bitReverseFlag=0) bit reversal of output.
    * @return        arm_status     function returns ARM_MATH_SUCCESS if initialization is successful or ARM_MATH_ARGUMENT_ERROR if <code>fftLen</code> is not a supported value.
    */
-  
+
   arm_status arm_cfft_radix4_init_q31(
 				      arm_cfft_radix4_instance_q31 * S,
 				      uint16_t fftLen,
@@ -1999,7 +2003,7 @@ extern "C"
    * @param[in]     bitReverseFlag flag that enables (bitReverseFlag=1) or disables (bitReverseFlag=0) bit reversal of output.
    * @return        The function returns ARM_MATH_SUCCESS if initialization is successful or ARM_MATH_ARGUMENT_ERROR if <code>fftLen</code> is not a supported value.
    */
-  
+
   arm_status arm_cfft_radix4_init_f32(
 				      arm_cfft_radix4_instance_f32 * S,
 				      uint16_t fftLen,
@@ -2020,7 +2024,7 @@ extern "C"
    * @param[in]      twidCoefModifier twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table.
    * @return none.
    */
-  
+
   void arm_radix4_butterfly_f32(
 				float32_t * pSrc,
 				uint16_t fftLen,
@@ -2036,7 +2040,7 @@ extern "C"
    * @param[in]      onebyfftLen      value of 1/fftLen.
    * @return none.
    */
-  
+
   void arm_radix4_butterfly_inverse_f32(
 					float32_t * pSrc,
 					uint16_t fftLen,
@@ -2067,7 +2071,7 @@ extern "C"
    * @param[in]      twidCoefModifier twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table.
    * @return none.
    */
-  
+
   void arm_radix4_butterfly_q31(
 				q31_t *pSrc,
 				uint32_t fftLen,
@@ -2082,13 +2086,13 @@ extern "C"
    * @param[in]      twidCoefModifier twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table.
    * @return none.
    */
-  
+
   void arm_radix4_butterfly_inverse_q31(
 					q31_t * pSrc,
 					uint32_t fftLen,
 					q31_t * pCoef,
 					uint32_t twidCoefModifier);
-  
+
   /**
    * @brief  In-place bit reversal function.
    * @param[in, out] *pSrc        points to the in-place buffer of Q31 data type.
@@ -2159,7 +2163,7 @@ extern "C"
     uint32_t fftLenBy2;                       /**< length of the complex FFT. */
     uint8_t  ifftFlagR;                       /**< flag that selects forward (ifftFlagR=0) or inverse (ifftFlagR=1) transform. */
 	uint8_t  bitReverseFlagR;                 /**< flag that enables (bitReverseFlagR=1) or disables (bitReverseFlagR=0) bit reversal of output. */
-    uint32_t twidCoefRModifier;               /**< twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table. */  
+    uint32_t twidCoefRModifier;               /**< twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table. */
     q15_t    *pTwiddleAReal;                  /**< points to the real twiddle factor table. */
     q15_t    *pTwiddleBReal;                  /**< points to the imag twiddle factor table. */
     arm_cfft_radix4_instance_q15 *pCfft;	  /**< points to the complex FFT instance. */
@@ -2883,7 +2887,7 @@ extern "C"
 		      q31_t * pDst,
 		      uint32_t blockSize);
   /**
-   * @brief  Copies the elements of a floating-point vector. 
+   * @brief  Copies the elements of a floating-point vector.
    * @param[in]  *pSrc input pointer
    * @param[out]  *pDst output pointer
    * @param[in]  blockSize number of samples to process
@@ -2895,7 +2899,7 @@ extern "C"
 		    uint32_t blockSize);
 
   /**
-   * @brief  Copies the elements of a Q7 vector. 
+   * @brief  Copies the elements of a Q7 vector.
    * @param[in]  *pSrc input pointer
    * @param[out]  *pDst output pointer
    * @param[in]  blockSize number of samples to process
@@ -2907,7 +2911,7 @@ extern "C"
 		   uint32_t blockSize);
 
   /**
-   * @brief  Copies the elements of a Q15 vector. 
+   * @brief  Copies the elements of a Q15 vector.
    * @param[in]  *pSrc input pointer
    * @param[out]  *pDst output pointer
    * @param[in]  blockSize number of samples to process
@@ -2919,7 +2923,7 @@ extern "C"
 		    uint32_t blockSize);
 
   /**
-   * @brief  Copies the elements of a Q31 vector. 
+   * @brief  Copies the elements of a Q31 vector.
    * @param[in]  *pSrc input pointer
    * @param[out]  *pDst output pointer
    * @param[in]  blockSize number of samples to process
@@ -2930,7 +2934,7 @@ extern "C"
 		    q31_t * pDst,
 		    uint32_t blockSize);
   /**
-   * @brief  Fills a constant value into a floating-point vector. 
+   * @brief  Fills a constant value into a floating-point vector.
    * @param[in]  value input value to be filled
    * @param[out]  *pDst output pointer
    * @param[in]  blockSize number of samples to process
@@ -2942,7 +2946,7 @@ extern "C"
 		    uint32_t blockSize);
 
   /**
-   * @brief  Fills a constant value into a Q7 vector. 
+   * @brief  Fills a constant value into a Q7 vector.
    * @param[in]  value input value to be filled
    * @param[out]  *pDst output pointer
    * @param[in]  blockSize number of samples to process
@@ -2954,7 +2958,7 @@ extern "C"
 		   uint32_t blockSize);
 
   /**
-   * @brief  Fills a constant value into a Q15 vector. 
+   * @brief  Fills a constant value into a Q15 vector.
    * @param[in]  value input value to be filled
    * @param[out]  *pDst output pointer
    * @param[in]  blockSize number of samples to process
@@ -2966,7 +2970,7 @@ extern "C"
 		    uint32_t blockSize);
 
   /**
-   * @brief  Fills a constant value into a Q31 vector. 
+   * @brief  Fills a constant value into a Q31 vector.
    * @param[in]  value input value to be filled
    * @param[out]  *pDst output pointer
    * @param[in]  blockSize number of samples to process
@@ -2977,15 +2981,15 @@ extern "C"
 		    q31_t * pDst,
 		    uint32_t blockSize);
 
-/**  
- * @brief Convolution of floating-point sequences.  
- * @param[in] *pSrcA points to the first input sequence.  
- * @param[in] srcALen length of the first input sequence.  
- * @param[in] *pSrcB points to the second input sequence.  
- * @param[in] srcBLen length of the second input sequence.  
- * @param[out] *pDst points to the location where the output result is written.  Length srcALen+srcBLen-1.  
- * @return none.  
- */ 
+/**
+ * @brief Convolution of floating-point sequences.
+ * @param[in] *pSrcA points to the first input sequence.
+ * @param[in] srcALen length of the first input sequence.
+ * @param[in] *pSrcB points to the second input sequence.
+ * @param[in] srcBLen length of the second input sequence.
+ * @param[out] *pDst points to the location where the output result is written.  Length srcALen+srcBLen-1.
+ * @return none.
+ */
 
   void arm_conv_f32(
 		     float32_t * pSrcA,
@@ -2994,14 +2998,14 @@ extern "C"
 		    uint32_t srcBLen,
 		    float32_t * pDst);
 
-/**  
- * @brief Convolution of Q15 sequences.  
- * @param[in] *pSrcA points to the first input sequence.  
- * @param[in] srcALen length of the first input sequence.  
- * @param[in] *pSrcB points to the second input sequence.  
- * @param[in] srcBLen length of the second input sequence.  
- * @param[out] *pDst points to the location where the output result is written.  Length srcALen+srcBLen-1.  
- * @return none.  
+/**
+ * @brief Convolution of Q15 sequences.
+ * @param[in] *pSrcA points to the first input sequence.
+ * @param[in] srcALen length of the first input sequence.
+ * @param[in] *pSrcB points to the second input sequence.
+ * @param[in] srcBLen length of the second input sequence.
+ * @param[out] *pDst points to the location where the output result is written.  Length srcALen+srcBLen-1.
+ * @return none.
  */
 
   void arm_conv_q15(
@@ -3661,8 +3665,8 @@ extern "C"
    * @brief Initialization function for the Q15 FIR lattice filter.
    * @param[in] *S points to an instance of the Q15 FIR lattice structure.
    * @param[in] numStages  number of filter stages.
-   * @param[in] *pCoeffs points to the coefficient buffer.  The array is of length numStages. 
-   * @param[in] *pState points to the state buffer.  The array is of length numStages. 
+   * @param[in] *pCoeffs points to the coefficient buffer.  The array is of length numStages.
+   * @param[in] *pState points to the state buffer.  The array is of length numStages.
    * @return none.
    */
 
@@ -4528,9 +4532,9 @@ extern "C"
 
   /*
    * @brief  Floating-point sin_cos function.
-   * @param[in]  theta    input value in degrees 
-   * @param[out] *pSinVal points to the processed sine output. 
-   * @param[out] *pCosVal points to the processed cos output. 
+   * @param[in]  theta    input value in degrees
+   * @param[out] *pSinVal points to the processed sine output.
+   * @param[out] *pCosVal points to the processed cos output.
    * @return none.
    */
 
@@ -4541,9 +4545,9 @@ extern "C"
 
   /*
    * @brief  Q31 sin_cos function.
-   * @param[in]  theta    scaled input value in degrees 
-   * @param[out] *pSinVal points to the processed sine output. 
-   * @param[out] *pCosVal points to the processed cosine output. 
+   * @param[in]  theta    scaled input value in degrees
+   * @param[out] *pSinVal points to the processed sine output.
+   * @param[out] *pCosVal points to the processed cosine output.
    * @return none.
    */
 
@@ -4641,7 +4645,7 @@ extern "C"
   /**
    * @defgroup PID PID Motor Control
    *
-   * A Proportional Integral Derivative (PID) controller is a generic feedback control 
+   * A Proportional Integral Derivative (PID) controller is a generic feedback control
    * loop mechanism widely used in industrial control systems.
    * A PID controller is the most commonly used type of feedback controller.
    *
@@ -4660,39 +4664,39 @@ extern "C"
    *
    * \par
    * where \c Kp is proportional constant, \c Ki is Integral constant and \c Kd is Derivative constant
-   * 
-   * \par 
-   * \image html PID.gif "Proportional Integral Derivative Controller" 
+   *
+   * \par
+   * \image html PID.gif "Proportional Integral Derivative Controller"
    *
    * \par
    * The PID controller calculates an "error" value as the difference between
    * the measured output and the reference input.
-   * The controller attempts to minimize the error by adjusting the process control inputs.  
-   * The proportional value determines the reaction to the current error, 
-   * the integral value determines the reaction based on the sum of recent errors, 
+   * The controller attempts to minimize the error by adjusting the process control inputs.
+   * The proportional value determines the reaction to the current error,
+   * the integral value determines the reaction based on the sum of recent errors,
    * and the derivative value determines the reaction based on the rate at which the error has been changing.
    *
-   * \par Instance Structure 
-   * The Gains A0, A1, A2 and state variables for a PID controller are stored together in an instance data structure. 
-   * A separate instance structure must be defined for each PID Controller. 
-   * There are separate instance structure declarations for each of the 3 supported data types. 
-   * 
-   * \par Reset Functions 
-   * There is also an associated reset function for each data type which clears the state array. 
+   * \par Instance Structure
+   * The Gains A0, A1, A2 and state variables for a PID controller are stored together in an instance data structure.
+   * A separate instance structure must be defined for each PID Controller.
+   * There are separate instance structure declarations for each of the 3 supported data types.
    *
-   * \par Initialization Functions 
-   * There is also an associated initialization function for each data type. 
-   * The initialization function performs the following operations: 
+   * \par Reset Functions
+   * There is also an associated reset function for each data type which clears the state array.
+   *
+   * \par Initialization Functions
+   * There is also an associated initialization function for each data type.
+   * The initialization function performs the following operations:
    * - Initializes the Gains A0, A1, A2 from Kp,Ki, Kd gains.
-   * - Zeros out the values in the state buffer.   
-   * 
-   * \par 
-   * Instance structure cannot be placed into a const data section and it is recommended to use the initialization function. 
+   * - Zeros out the values in the state buffer.
    *
-   * \par Fixed-Point Behavior 
-   * Care must be taken when using the fixed-point versions of the PID Controller functions. 
-   * In particular, the overflow and saturation behavior of the accumulator used in each function must be considered. 
-   * Refer to the function specific documentation below for usage guidelines. 
+   * \par
+   * Instance structure cannot be placed into a const data section and it is recommended to use the initialization function.
+   *
+   * \par Fixed-Point Behavior
+   * Care must be taken when using the fixed-point versions of the PID Controller functions.
+   * In particular, the overflow and saturation behavior of the accumulator used in each function must be considered.
+   * Refer to the function specific documentation below for usage guidelines.
    */
 
   /**
@@ -4708,7 +4712,7 @@ extern "C"
    */
 
 
-  static __INLINE float32_t arm_pid_f32(
+  __STATIC_INLINE float32_t arm_pid_f32(
 					arm_pid_instance_f32 * S,
 					float32_t in)
   {
@@ -4734,16 +4738,16 @@ extern "C"
    * @param[in] in input sample to process
    * @return out processed output sample.
    *
-   * <b>Scaling and Overflow Behavior:</b> 
-   * \par 
-   * The function is implemented using an internal 64-bit accumulator. 
-   * The accumulator has a 2.62 format and maintains full precision of the intermediate multiplication results but provides only a single guard bit. 
-   * Thus, if the accumulator result overflows it wraps around rather than clip. 
-   * In order to avoid overflows completely the input signal must be scaled down by 2 bits as there are four additions. 
-   * After all multiply-accumulates are performed, the 2.62 accumulator is truncated to 1.32 format and then saturated to 1.31 format. 
+   * <b>Scaling and Overflow Behavior:</b>
+   * \par
+   * The function is implemented using an internal 64-bit accumulator.
+   * The accumulator has a 2.62 format and maintains full precision of the intermediate multiplication results but provides only a single guard bit.
+   * Thus, if the accumulator result overflows it wraps around rather than clip.
+   * In order to avoid overflows completely the input signal must be scaled down by 2 bits as there are four additions.
+   * After all multiply-accumulates are performed, the 2.62 accumulator is truncated to 1.32 format and then saturated to 1.31 format.
    */
 
-  static __INLINE q31_t arm_pid_q31(
+  __STATIC_INLINE q31_t arm_pid_q31(
 				    arm_pid_instance_q31 * S,
 				    q31_t in)
   {
@@ -4781,17 +4785,17 @@ extern "C"
    * @param[in] in input sample to process
    * @return out processed output sample.
    *
-   * <b>Scaling and Overflow Behavior:</b> 
-   * \par 
-   * The function is implemented using a 64-bit internal accumulator. 
-   * Both Gains and state variables are represented in 1.15 format and multiplications yield a 2.30 result. 
-   * The 2.30 intermediate results are accumulated in a 64-bit accumulator in 34.30 format. 
-   * There is no risk of internal overflow with this approach and the full precision of intermediate multiplications is preserved. 
-   * After all additions have been performed, the accumulator is truncated to 34.15 format by discarding low 15 bits. 
+   * <b>Scaling and Overflow Behavior:</b>
+   * \par
+   * The function is implemented using a 64-bit internal accumulator.
+   * Both Gains and state variables are represented in 1.15 format and multiplications yield a 2.30 result.
+   * The 2.30 intermediate results are accumulated in a 64-bit accumulator in 34.30 format.
+   * There is no risk of internal overflow with this approach and the full precision of intermediate multiplications is preserved.
+   * After all additions have been performed, the accumulator is truncated to 34.15 format by discarding low 15 bits.
    * Lastly, the accumulator is saturated to yield a result in 1.15 format.
    */
 
-  static __INLINE q15_t arm_pid_q15(
+  __STATIC_INLINE q15_t arm_pid_q15(
 				    arm_pid_instance_q15 * S,
 				    q15_t in)
   {
@@ -4806,14 +4810,14 @@ extern "C"
 	acc = ((q31_t) S->A0 )* in ;
 
     #else
-				
+
     /* acc = A0 * x[n]  */
     acc = (q31_t) __SMUAD(S->A0, in);
-	
+
 	#endif
 
 	#ifdef ARM_MATH_CM0
-						   
+
 	/* acc += A1 * x[n-1] + A2 * x[n-2]  */
 	acc += (q31_t) S->A1  *  S->state[0] ;
 	acc += (q31_t) S->A2  *  S->state[1] ;
@@ -4840,7 +4844,7 @@ extern "C"
     return (out);
 
   }
-  
+
   /**
    * @} end of PID group
    */
@@ -4858,8 +4862,8 @@ extern "C"
 				 const arm_matrix_instance_f32 * src,
 				 arm_matrix_instance_f32 * dst);
 
-  
- 
+
+
   /**
    * @ingroup groupController
    */
@@ -4875,7 +4879,7 @@ extern "C"
    * and <code>Ia + Ib + Ic = 0</code>, in this condition <code>Ialpha</code> and <code>Ibeta</code>
    * can be calculated using only <code>Ia</code> and <code>Ib</code>.
    *
-   * The function operates on a single sample of data and each call to the function returns the processed output. 
+   * The function operates on a single sample of data and each call to the function returns the processed output.
    * The library provides separate functions for Q31 and floating-point data types.
    * \par Algorithm
    * \image html clarkeFormula.gif
@@ -4902,7 +4906,7 @@ extern "C"
    * @return none.
    */
 
-  static __INLINE void arm_clarke_f32(
+  __STATIC_INLINE void arm_clarke_f32(
 				      float32_t Ia,
 				      float32_t Ib,
 				      float32_t * pIalpha,
@@ -4931,7 +4935,7 @@ extern "C"
    * There is saturation on the addition, hence there is no risk of overflow.
    */
 
-  static __INLINE void arm_clarke_q31(
+  __STATIC_INLINE void arm_clarke_q31(
 				      q31_t Ia,
 				      q31_t Ib,
 				      q31_t * pIalpha,
@@ -4969,7 +4973,7 @@ extern "C"
 		     uint32_t blockSize);
 
 
- 
+
 
   /**
    * @ingroup groupController
@@ -4978,8 +4982,8 @@ extern "C"
   /**
    * @defgroup inv_clarke Vector Inverse Clarke Transform
    * Inverse Clarke transform converts the two-coordinate time invariant vector into instantaneous stator phases.
-   * 
-   * The function operates on a single sample of data and each call to the function returns the processed output. 
+   *
+   * The function operates on a single sample of data and each call to the function returns the processed output.
    * The library provides separate functions for Q31 and floating-point data types.
    * \par Algorithm
    * \image html clarkeInvFormula.gif
@@ -5006,7 +5010,7 @@ extern "C"
    */
 
 
-  static __INLINE void arm_inv_clarke_f32(
+  __STATIC_INLINE void arm_inv_clarke_f32(
 					  float32_t Ialpha,
 					  float32_t Ibeta,
 					  float32_t * pIa,
@@ -5021,7 +5025,7 @@ extern "C"
   }
 
   /**
-   * @brief  Inverse Clarke transform for Q31 version 
+   * @brief  Inverse Clarke transform for Q31 version
    * @param[in]       Ialpha  input two-phase orthogonal vector axis alpha
    * @param[in]       Ibeta   input two-phase orthogonal vector axis beta
    * @param[out]      *pIa    points to output three-phase coordinate <code>a</code>
@@ -5035,7 +5039,7 @@ extern "C"
    * There is saturation on the subtraction, hence there is no risk of overflow.
    */
 
-  static __INLINE void arm_inv_clarke_q31(
+  __STATIC_INLINE void arm_inv_clarke_q31(
 					  q31_t Ialpha,
 					  q31_t Ibeta,
 					  q31_t * pIa,
@@ -5073,7 +5077,7 @@ extern "C"
 		     q15_t * pDst,
 		     uint32_t blockSize);
 
-  
+
 
   /**
    * @ingroup groupController
@@ -5083,19 +5087,19 @@ extern "C"
    * @defgroup park Vector Park Transform
    *
    * Forward Park transform converts the input two-coordinate vector to flux and torque components.
-   * The Park transform can be used to realize the transformation of the <code>Ialpha</code> and the <code>Ibeta</code> currents 
-   * from the stationary to the moving reference frame and control the spatial relationship between 
+   * The Park transform can be used to realize the transformation of the <code>Ialpha</code> and the <code>Ibeta</code> currents
+   * from the stationary to the moving reference frame and control the spatial relationship between
    * the stator vector current and rotor flux vector.
-   * If we consider the d axis aligned with the rotor flux, the diagram below shows the 
+   * If we consider the d axis aligned with the rotor flux, the diagram below shows the
    * current vector and the relationship from the two reference frames:
    * \image html park.gif "Stator current space vector and its component in (a,b) and in the d,q rotating reference frame"
    *
-   * The function operates on a single sample of data and each call to the function returns the processed output. 
+   * The function operates on a single sample of data and each call to the function returns the processed output.
    * The library provides separate functions for Q31 and floating-point data types.
    * \par Algorithm
    * \image html parkFormula.gif
-   * where <code>Ialpha</code> and <code>Ibeta</code> are the stator vector components,  
-   * <code>pId</code> and <code>pIq</code> are rotor vector components and <code>cosVal</code> and <code>sinVal</code> are the 
+   * where <code>Ialpha</code> and <code>Ibeta</code> are the stator vector components,
+   * <code>pId</code> and <code>pIq</code> are rotor vector components and <code>cosVal</code> and <code>sinVal</code> are the
    * cosine and sine values of theta (rotor flux position).
    * \par Fixed-Point Behavior
    * Care must be taken when using the Q31 version of the Park transform.
@@ -5122,7 +5126,7 @@ extern "C"
    *
    */
 
-  static __INLINE void arm_park_f32(
+  __STATIC_INLINE void arm_park_f32(
 				    float32_t Ialpha,
 				    float32_t Ibeta,
 				    float32_t * pId,
@@ -5139,7 +5143,7 @@ extern "C"
   }
 
   /**
-   * @brief  Park transform for Q31 version 
+   * @brief  Park transform for Q31 version
    * @param[in]       Ialpha input two-phase vector coordinate alpha
    * @param[in]       Ibeta  input two-phase vector coordinate beta
    * @param[out]      *pId   points to output rotor reference frame d
@@ -5156,7 +5160,7 @@ extern "C"
    */
 
 
-  static __INLINE void arm_park_q31(
+  __STATIC_INLINE void arm_park_q31(
 				    q31_t Ialpha,
 				    q31_t Ibeta,
 				    q31_t * pId,
@@ -5203,7 +5207,7 @@ extern "C"
 		       float32_t * pDst,
 		       uint32_t blockSize);
 
- 
+
   /**
    * @ingroup groupController
    */
@@ -5212,12 +5216,12 @@ extern "C"
    * @defgroup inv_park Vector Inverse Park transform
    * Inverse Park transform converts the input flux and torque components to two-coordinate vector.
    *
-   * The function operates on a single sample of data and each call to the function returns the processed output. 
+   * The function operates on a single sample of data and each call to the function returns the processed output.
    * The library provides separate functions for Q31 and floating-point data types.
    * \par Algorithm
    * \image html parkInvFormula.gif
-   * where <code>pIalpha</code> and <code>pIbeta</code> are the stator vector components,  
-   * <code>Id</code> and <code>Iq</code> are rotor vector components and <code>cosVal</code> and <code>sinVal</code> are the 
+   * where <code>pIalpha</code> and <code>pIbeta</code> are the stator vector components,
+   * <code>Id</code> and <code>Iq</code> are rotor vector components and <code>cosVal</code> and <code>sinVal</code> are the
    * cosine and sine values of theta (rotor flux position).
    * \par Fixed-Point Behavior
    * Care must be taken when using the Q31 version of the Park transform.
@@ -5241,7 +5245,7 @@ extern "C"
    * @return none.
    */
 
-  static __INLINE void arm_inv_park_f32(
+  __STATIC_INLINE void arm_inv_park_f32(
 					float32_t Id,
 					float32_t Iq,
 					float32_t * pIalpha,
@@ -5259,7 +5263,7 @@ extern "C"
 
 
   /**
-   * @brief  Inverse Park transform for	Q31 version 
+   * @brief  Inverse Park transform for	Q31 version
    * @param[in]       Id        input coordinate of rotor reference frame d
    * @param[in]       Iq        input coordinate of rotor reference frame q
    * @param[out]      *pIalpha  points to output two-phase orthogonal vector axis alpha
@@ -5276,7 +5280,7 @@ extern "C"
    */
 
 
-  static __INLINE void arm_inv_park_q31(
+  __STATIC_INLINE void arm_inv_park_q31(
 					q31_t Id,
 					q31_t Iq,
 					q31_t * pIalpha,
@@ -5312,7 +5316,7 @@ extern "C"
    * @} end of Inverse park group
    */
 
-   
+
   /**
    * @brief  Converts the elements of the Q31 vector to floating-point vector.
    * @param[in]  *pSrc is input pointer
@@ -5335,7 +5339,7 @@ extern "C"
    * Linear interpolation is a method of curve fitting using linear polynomials.
    * Linear interpolation works by effectively drawing a straight line between two neighboring samples and returning the appropriate point along that line
    *
-   * \par 
+   * \par
    * \image html LinearInterp.gif "Linear interpolation"
    *
    * \par
@@ -5355,10 +5359,10 @@ extern "C"
    * sample of data and each call to the function returns a single processed value.
    * <code>S</code> points to an instance of the Linear Interpolate function data structure.
    * <code>x</code> is the input sample value. The functions returns the output value.
-   * 
+   *
    * \par
-   * if x is outside of the table boundary, Linear interpolation returns first value of the table 
-   * if x is below input range and returns last value of table if x is above range.  
+   * if x is outside of the table boundary, Linear interpolation returns first value of the table
+   * if x is below input range and returns last value of table if x is above range.
    */
 
   /**
@@ -5374,7 +5378,7 @@ extern "C"
    *
    */
 
-  static __INLINE float32_t arm_linear_interp_f32(
+  __STATIC_INLINE float32_t arm_linear_interp_f32(
 						  arm_linear_interp_instance_f32 * S,
 						  float32_t x)
   {
@@ -5397,21 +5401,21 @@ extern "C"
 	  else if(i >= S->nValues)
 	  {
 	  	  /* Iniatilize output for above specified range as last output value of table */
-	  	  y = pYData[S->nValues-1];	
+	  	  y = pYData[S->nValues-1];
 	  }
 	  else
-	  {	 
+	  {
 	  	  /* Calculation of nearest input values */
 		  x0 = S->x1 + i * xSpacing;
 		  x1 = S->x1 + (i +1) * xSpacing;
-		 
+
 		 /* Read of nearest output values */
 		  y0 = pYData[i];
 		  y1 = pYData[i + 1];
-		
+
 		  /* Calculation of output */
-		  y = y0 + (x - x0) * ((y1 - y0)/(x1-x0));	
-		
+		  y = y0 + (x - x0) * ((y1 - y0)/(x1-x0));
+
 	  }
 
       /* returns output value */
@@ -5433,14 +5437,14 @@ extern "C"
    */
 
 
-  static __INLINE q31_t arm_linear_interp_q31(q31_t *pYData,
+  __STATIC_INLINE q31_t arm_linear_interp_q31(q31_t *pYData,
 					      q31_t x, uint32_t nValues)
   {
     q31_t y;                                   /* output */
     q31_t y0, y1;                                /* Nearest output values */
     q31_t fract;                                 /* fractional part */
     int32_t index;                              /* Index to read nearest output values */
-    
+
     /* Input is in 12.20 format */
     /* 12 bits for the table index */
     /* Index value calculation */
@@ -5460,17 +5464,17 @@ extern "C"
 	    /* 20 bits for the fractional part */
 	    /* shift left by 11 to keep fract in 1.31 format */
 	    fract = (x & 0x000FFFFF) << 11;
-	
+
 	    /* Read two nearest output values from the index in 1.31(q31) format */
 	    y0 = pYData[index];
 	    y1 = pYData[index + 1u];
-	
+
 	    /* Calculation of y0 * (1-fract) and y is in 2.30 format */
 	    y = ((q31_t) ((q63_t) y0 * (0x7FFFFFFF - fract) >> 32));
-	
+
 	    /* Calculation of y0 * (1-fract) + y1 *fract and y is in 2.30 format */
 	    y += ((q31_t) (((q63_t) y1 * fract) >> 32));
-	
+
 	    /* Convert y to 1.31 format */
 	    return (y << 1u);
 
@@ -5488,22 +5492,22 @@ extern "C"
    *
    * \par
    * Input sample <code>x</code> is in 12.20 format which contains 12 bits for table index and 20 bits for fractional part.
-   * This function can support maximum of table size 2^12. 
+   * This function can support maximum of table size 2^12.
    *
    */
 
 
-  static __INLINE q15_t arm_linear_interp_q15(q15_t *pYData, q31_t x, uint32_t nValues)
+  __STATIC_INLINE q15_t arm_linear_interp_q15(q15_t *pYData, q31_t x, uint32_t nValues)
   {
     q63_t y;                                   /* output */
     q15_t y0, y1;                              /* Nearest output values */
     q31_t fract;                               /* fractional part */
-    int32_t index;                            /* Index to read nearest output values */ 
+    int32_t index;                            /* Index to read nearest output values */
 
     /* Input is in 12.20 format */
     /* 12 bits for the table index */
     /* Index value calculation */
-    index = ((x & 0xFFF00000) >> 20u); 
+    index = ((x & 0xFFF00000) >> 20u);
 
 	if(index >= (nValues - 1))
 	{
@@ -5514,21 +5518,21 @@ extern "C"
 		return(pYData[0]);
 	}
 	else
-	{	
+	{
 	    /* 20 bits for the fractional part */
 	    /* fract is in 12.20 format */
 	    fract = (x & 0x000FFFFF);
-	
+
 	    /* Read two nearest output values from the index */
 	    y0 = pYData[index];
 	    y1 = pYData[index + 1u];
-	
+
 	    /* Calculation of y0 * (1-fract) and y is in 13.35 format */
 	    y = ((q63_t) y0 * (0xFFFFF - fract));
-	
+
 	    /* Calculation of (y0 * (1-fract) + y1 * fract) and y is in 13.35 format */
 	    y += ((q63_t) y1 * (fract));
-	
+
 	    /* convert y to 1.15 format */
 	    return (y >> 20);
 	}
@@ -5550,13 +5554,13 @@ extern "C"
    */
 
 
-  static __INLINE q7_t arm_linear_interp_q7(q7_t *pYData, q31_t x,  uint32_t nValues)
+  __STATIC_INLINE q7_t arm_linear_interp_q7(q7_t *pYData, q31_t x,  uint32_t nValues)
   {
     q31_t y;                                   /* output */
     q7_t y0, y1;                                 /* Nearest output values */
     q31_t fract;                                 /* fractional part */
     int32_t index;                              /* Index to read nearest output values */
-    
+
     /* Input is in 12.20 format */
     /* 12 bits for the table index */
     /* Index value calculation */
@@ -5577,17 +5581,17 @@ extern "C"
 	    /* 20 bits for the fractional part */
 	    /* fract is in 12.20 format */
 	    fract = (x & 0x000FFFFF);
-	
+
 	    /* Read two nearest output values from the index and are in 1.7(q7) format */
 	    y0 = pYData[index];
 	    y1 = pYData[index + 1u];
-	
+
 	    /* Calculation of y0 * (1-fract ) and y is in 13.27(q27) format */
 	    y = ((y0 * (0xFFFFF - fract)));
-	
+
 	    /* Calculation of y1 * fract + y0 * (1-fract) and y is in 13.27(q27) format */
 	    y += (y1 * fract);
-	
+
 	    /* convert y to 1.7(q7) format */
 	    return (y >> 20u);
 
@@ -5662,7 +5666,7 @@ extern "C"
    * @defgroup SQRT Square Root
    *
    * Computes the square root of a number.
-   * There are separate functions for Q15, Q31, and floating-point data types.  
+   * There are separate functions for Q15, Q31, and floating-point data types.
    * The square root function is computed using the Newton-Raphson algorithm.
    * This is an iterative algorithm of the form:
    * <pre>
@@ -5692,26 +5696,28 @@ extern "C"
    * <code>in</code> is negative value and returns zero output for negative values.
    */
 
-  static __INLINE arm_status  arm_sqrt_f32(
-					  float32_t in, float32_t *pOut)
+  __STATIC_INLINE arm_status  arm_sqrt_f32(
+                      float32_t in, float32_t *pOut)
   {
-  	if(in > 0)
-	{
+    if(in > 0)
+    {
 
-//	#if __FPU_USED
+//    #if __FPU_USED
     #if (__FPU_USED == 1) && defined ( __CC_ARM   )
-		*pOut = __sqrtf(in);
-	#else	  
-		*pOut = sqrtf(in);
-	#endif
+        *pOut = __sqrtf(in);
+    #elif (__FPU_USED == 1) && defined ( __TMS_740 )
+        *pOut = __builtin_sqrtf(in);
+    #else
+        *pOut = sqrtf(in);
+    #endif
 
-		return (ARM_MATH_SUCCESS);
-	}
-  	else
-	{
-		*pOut = 0.0f;
-		return (ARM_MATH_ARGUMENT_ERROR);
-	}
+        return (ARM_MATH_SUCCESS);
+    }
+    else
+    {
+        *pOut = 0.0f;
+        return (ARM_MATH_ARGUMENT_ERROR);
+    }
 
   }
 
@@ -5749,7 +5755,7 @@ extern "C"
    * @brief floating-point Circular write function.
    */
 
-  static __INLINE void arm_circularWrite_f32(
+  __STATIC_INLINE void arm_circularWrite_f32(
 					     int32_t * circBuffer,
 					     int32_t L,
 					     uint16_t * writeOffset,
@@ -5794,7 +5800,7 @@ extern "C"
   /**
    * @brief floating-point Circular Read function.
    */
-  static __INLINE void arm_circularRead_f32(
+  __STATIC_INLINE void arm_circularRead_f32(
 					    int32_t * circBuffer,
 					    int32_t L,
 					    int32_t * readOffset,
@@ -5849,7 +5855,7 @@ extern "C"
    * @brief Q15 Circular write function.
    */
 
-  static __INLINE void arm_circularWrite_q15(
+  __STATIC_INLINE void arm_circularWrite_q15(
 					     q15_t * circBuffer,
 					     int32_t L,
 					     uint16_t * writeOffset,
@@ -5894,7 +5900,7 @@ extern "C"
   /**
    * @brief Q15 Circular Read function.
    */
-  static __INLINE void arm_circularRead_q15(
+  __STATIC_INLINE void arm_circularRead_q15(
 					    q15_t * circBuffer,
 					    int32_t L,
 					    int32_t * readOffset,
@@ -5951,7 +5957,7 @@ extern "C"
    * @brief Q7 Circular write function.
    */
 
-  static __INLINE void arm_circularWrite_q7(
+  __STATIC_INLINE void arm_circularWrite_q7(
 					    q7_t * circBuffer,
 					    int32_t L,
 					    uint16_t * writeOffset,
@@ -5996,7 +6002,7 @@ extern "C"
   /**
    * @brief Q7 Circular Read function.
    */
-  static __INLINE void arm_circularRead_q7(
+  __STATIC_INLINE void arm_circularRead_q7(
 					   q7_t * circBuffer,
 					   int32_t L,
 					   int32_t * readOffset,
@@ -6567,11 +6573,11 @@ extern "C"
 			       uint32_t numSamples);
 
   /**
-   * @brief Converts the elements of the floating-point vector to Q31 vector. 
-   * @param[in]       *pSrc points to the floating-point input vector 
+   * @brief Converts the elements of the floating-point vector to Q31 vector.
+   * @param[in]       *pSrc points to the floating-point input vector
    * @param[out]      *pDst points to the Q31 output vector
-   * @param[in]       blockSize length of the input vector 
-   * @return none. 
+   * @param[in]       blockSize length of the input vector
+   * @return none.
    */
   void arm_float_to_q31(
 			       float32_t * pSrc,
@@ -6579,10 +6585,10 @@ extern "C"
 			      uint32_t blockSize);
 
   /**
-   * @brief Converts the elements of the floating-point vector to Q15 vector. 
-   * @param[in]       *pSrc points to the floating-point input vector 
+   * @brief Converts the elements of the floating-point vector to Q15 vector.
+   * @param[in]       *pSrc points to the floating-point input vector
    * @param[out]      *pDst points to the Q15 output vector
-   * @param[in]       blockSize length of the input vector 
+   * @param[in]       blockSize length of the input vector
    * @return          none
    */
   void arm_float_to_q15(
@@ -6591,10 +6597,10 @@ extern "C"
 			      uint32_t blockSize);
 
   /**
-   * @brief Converts the elements of the floating-point vector to Q7 vector. 
-   * @param[in]       *pSrc points to the floating-point input vector 
+   * @brief Converts the elements of the floating-point vector to Q7 vector.
+   * @param[in]       *pSrc points to the floating-point input vector
    * @param[out]      *pDst points to the Q7 output vector
-   * @param[in]       blockSize length of the input vector 
+   * @param[in]       blockSize length of the input vector
    * @return          none
    */
   void arm_float_to_q7(
@@ -6714,12 +6720,12 @@ extern "C"
    *           + f(XF, YF+1) * (1-(x-XF))*(y-YF)
    *           + f(XF+1, YF+1) * (x-XF)*(y-YF)
    * </pre>
-   * Note that the coordinates (x, y) contain integer and fractional components.  
+   * Note that the coordinates (x, y) contain integer and fractional components.
    * The integer components specify which portion of the table to use while the
    * fractional components control the interpolation processor.
    *
    * \par
-   * if (x,y) are outside of the table boundary, Bilinear interpolation returns zero output. 
+   * if (x,y) are outside of the table boundary, Bilinear interpolation returns zero output.
    */
 
   /**
@@ -6736,8 +6742,8 @@ extern "C"
   * @return out interpolated value.
   */
 
-  
-  static __INLINE float32_t arm_bilinear_interp_f32(
+
+  __STATIC_INLINE float32_t arm_bilinear_interp_f32(
 						    const arm_bilinear_interp_instance_f32 * S,
 						    float32_t X,
 						    float32_t Y)
@@ -6758,7 +6764,7 @@ extern "C"
 	{
 		return(0);
 	}
-	
+
     /* Calculation of index for two nearest points in X-direction */
     index = (xIndex - 1) + (yIndex-1) *  S->numCols ;
 
@@ -6804,7 +6810,7 @@ extern "C"
   * @return out interpolated value.
   */
 
-  static __INLINE q31_t arm_bilinear_interp_q31(
+  __STATIC_INLINE q31_t arm_bilinear_interp_q31(
 						arm_bilinear_interp_instance_q31 * S,
 						q31_t X,
 						q31_t Y)
@@ -6880,7 +6886,7 @@ extern "C"
   * @return out interpolated value.
   */
 
-  static __INLINE q15_t arm_bilinear_interp_q15(
+  __STATIC_INLINE q15_t arm_bilinear_interp_q15(
 						arm_bilinear_interp_instance_q15 * S,
 						q31_t X,
 						q31_t Y)
@@ -6960,7 +6966,7 @@ extern "C"
   * @return out interpolated value.
   */
 
-  static __INLINE q7_t arm_bilinear_interp_q7(
+  __STATIC_INLINE q7_t arm_bilinear_interp_q7(
 					      arm_bilinear_interp_instance_q7 * S,
 					      q31_t X,
 					      q31_t Y)
