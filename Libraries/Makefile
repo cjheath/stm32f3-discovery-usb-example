@@ -25,18 +25,25 @@ SRCS = stm32f30x_adc.c stm32f30x_can.c stm32f30x_comp.c stm32f30x_crc.c \
        stm32f30x_wwdg.c usb_core.c usb_init.c usb_int.c usb_mem.c \
        usb_regs.c usb_sil.c
 
-OBJS = $(SRCS:.c=.o)
+OBJS = $(addprefix objs/,$(SRCS:.c=.o))
+DEPS = $(addprefix deps/,$(SRCS:.c=.d))
 
-.PHONY: libstm32f3.a
+.PHONY: all clean
 
 all: libstm32f3.a
 
-%.o : %.c
-	$(CC) $(CFLAGS) -c -o $@ $^
+-include $(DEPS)
+
+dirs:
+	mkdir -p deps objs
+	touch dirs
+
+objs/%.o : %.c dirs
+	$(CC) $(CFLAGS) -c -o $@ $< -MMD -MF deps/$(*F).d
 
 libstm32f3.a: $(OBJS)
 	$(AR) -r $@ $(OBJS)
 
 clean:
-	rm -f $(OBJS) libstm32f3.a
+	rm -f dirs $(OBJS) $(DEPS) libstm32f3.a
 
