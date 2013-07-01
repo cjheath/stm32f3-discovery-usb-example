@@ -2,7 +2,7 @@
 #include "stm32f3_discovery.h"
 
 /* Private variables ---------------------------------------------------------*/
-  RCC_ClocksTypeDef RCC_Clocks;
+RCC_ClocksTypeDef RCC_Clocks;
 __IO uint32_t TimingDelay = 0;
 
 /* Private function prototypes -----------------------------------------------*/
@@ -23,53 +23,31 @@ void SysTick_Handler(void)
 
 /**
   * @brief  Main program.
-  * @param  None 
+  * @param  None
   * @retval None
   */
 int main(void)
-{  
-  /* SysTick end of count event each 10ms */
+{
+  static const int clockwise[8] = { LED3, LED5, LED7, LED9, LED10, LED8, LED6, LED4 };
+  int	i;
+
+  /* SysTick end of count event each 20ms */
   RCC_GetClocksFreq(&RCC_Clocks);
-  SysTick_Config(RCC_Clocks.HCLK_Frequency / 100);
-  
-  /* Initialize LEDs and User Button available on STM32F3-Discovery board */
-  STM_EVAL_LEDInit(LED3);
-  STM_EVAL_LEDInit(LED4);
-  STM_EVAL_LEDInit(LED5);
-  STM_EVAL_LEDInit(LED6);
-  STM_EVAL_LEDInit(LED7);
-  STM_EVAL_LEDInit(LED8);
-  STM_EVAL_LEDInit(LED9);
-  STM_EVAL_LEDInit(LED10);
-   
+  SysTick_Config(RCC_Clocks.HCLK_Frequency / 50);
+
+  /* Initialize LEDs on STM32F3-Discovery board */
+  for (i = 0; i < 8; i++)
+    STM_EVAL_LEDInit(clockwise[i]);
+
   /* Infinite loop */
-  while (1)
-  {   
-    /* LEDs Off */
-    STM_EVAL_LEDOff(LED3);
-    STM_EVAL_LEDOff(LED6);
-    STM_EVAL_LEDOff(LED7);
-    STM_EVAL_LEDOff(LED4);
-    STM_EVAL_LEDOff(LED10);
-    STM_EVAL_LEDOff(LED8);
-    STM_EVAL_LEDOff(LED9);
-    STM_EVAL_LEDOff(LED5);
-    
-    Delay(50); /*500ms - half second*/
-    
-    /* LEDs Off */
-    STM_EVAL_LEDOn(LED3);
-    STM_EVAL_LEDOn(LED6);
-    STM_EVAL_LEDOn(LED7);
-    STM_EVAL_LEDOn(LED4);
-    STM_EVAL_LEDOn(LED10);
-    STM_EVAL_LEDOn(LED8);
-    STM_EVAL_LEDOn(LED9);
-    STM_EVAL_LEDOn(LED5);
-    
-    Delay(50); /*500ms - half second*/
+  for (i = 0; ; i++)
+  {
+    STM_EVAL_LEDOff(clockwise[(i+4)&0x7]);
+    STM_EVAL_LEDOn(clockwise[i&0x7]);
+    Delay(5); /*100ms*/
   }
 }
+
 /**
   * @brief  Inserts a delay time.
   * @param  nTime: specifies the delay time length, in 10 ms.
@@ -90,7 +68,7 @@ void Delay(__IO uint32_t nTime)
 void TimingDelay_Decrement(void)
 {
   if (TimingDelay != 0x00)
-  { 
+  {
     TimingDelay--;
   }
 }
@@ -105,7 +83,7 @@ void TimingDelay_Decrement(void)
   * @retval None
   */
 void assert_failed(uint8_t* file, uint32_t line)
-{ 
+{
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
 
