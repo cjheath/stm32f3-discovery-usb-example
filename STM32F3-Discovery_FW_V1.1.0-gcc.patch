@@ -1,0 +1,224 @@
+diff --git c/.gitignore w/.gitignore
+new file mode 100644
+index 0000000..83d036b
+--- /dev/null
++++ w/.gitignore
+@@ -0,0 +1,5 @@
++deps
++dirs
++*.a
++objs
++inst
+diff --git c/Libraries/STM32_USB-FS-Device_Driver/inc/usb_sil.h w/Libraries/STM32_USB-FS-Device_Driver/inc/usb_sil.h
+index 0e941cc..b9d8fd0 100644
+--- c/Libraries/STM32_USB-FS-Device_Driver/inc/usb_sil.h
++++ w/Libraries/STM32_USB-FS-Device_Driver/inc/usb_sil.h
+@@ -36,7 +36,7 @@
+ /* Exported macro ------------------------------------------------------------*/
+ /* Exported functions ------------------------------------------------------- */
+ 
+-uint32_t USB_SIL_Init(void);
++uint32_t USB_SIL_Init(uint16_t interrupt_mask);
+ uint32_t USB_SIL_Write(uint8_t bEpAddr, uint8_t* pBufferPointer, uint32_t wBufferSize);
+ uint32_t USB_SIL_Read(uint8_t bEpAddr, uint8_t* pBufferPointer);
+ 
+diff --git c/Libraries/STM32_USB-FS-Device_Driver/src/usb_sil.c w/Libraries/STM32_USB-FS-Device_Driver/src/usb_sil.c
+index 2419904..96b6cc8 100644
+--- c/Libraries/STM32_USB-FS-Device_Driver/src/usb_sil.c
++++ w/Libraries/STM32_USB-FS-Device_Driver/src/usb_sil.c
+@@ -45,14 +45,13 @@
+ * Output         : None.
+ * Return         : Status.
+ *******************************************************************************/
+-uint32_t USB_SIL_Init(void)
++uint32_t USB_SIL_Init(uint16_t interrupt_mask)
+ {
+   /* USB interrupts initialization */
+   /* clear pending interrupts */
+   _SetISTR(0);
+-  wInterrupt_Mask = IMR_MSK;
+   /* set interrupts mask */
+-  _SetCNTR(wInterrupt_Mask);
++  _SetCNTR(interrupt_mask);
+   return 0;
+ }
+ 
+diff --git c/Libraries/hw_config.h w/Libraries/hw_config.h
+new file mode 100644
+index 0000000..99f2fd4
+--- /dev/null
++++ w/Libraries/hw_config.h
+@@ -0,0 +1,14 @@
++/*
++ * Definitions to rename the global variables in the USB support library
++ */
++#define	Data_Mul_MaxPacketSize	USB_Data_Mul_MaxPacketSize
++#define	StatusInfo		USB_StatusInfo
++#define	Device_Info		USB_Device_Info
++#define	EPindex			USB_EPindex
++#define	SaveState		USB_SaveState
++#define	pInformation		USB_pInformation
++#define	pProperty		USB_pProperty
++#define	pUser_Standard_Requests	USB_pUser_Standard_Requests
++#define	wInterrupt_Mask		USB_wInterrupt_Mask
++#define	SaveRState		USB_SaveRState
++#define	SaveTState		USB_SaveTState
+diff --git c/Libraries/stm32f3.gmk w/Libraries/stm32f3.gmk
+new file mode 100644
+index 0000000..48aad51
+--- /dev/null
++++ w/Libraries/stm32f3.gmk
+@@ -0,0 +1,55 @@
++#
++# Makefile to build the core STM32F3 library.
++# Refined from mblythe86-stm32f3-discovery-basic-template.
++#
++LIB	=	libstm32f3.a
++
++PREFIX	=	arm-none-eabi-
++CC=$(PREFIX)gcc
++AR=$(PREFIX)ar
++
++vpath		%.c STM32F30x_StdPeriph_Driver/src STM32_USB-FS-Device_Driver/src
++INCLUDEPATH =	. CMSIS/Include CMSIS/Device/ST/STM32F30x/Include STM32F30x_StdPeriph_Driver/inc STM32_USB-FS-Device_Driver/inc
++
++CFLAGS	=	-g -O2 -Wall
++CFLAGS	+=	-mlittle-endian -mthumb -mcpu=cortex-m4 -march=armv7e-m
++CFLAGS	+=	-mfpu=fpv4-sp-d16 -mfloat-abi=hard
++CFLAGS	+=	-ffreestanding -nostdlib
++CFLAGS	+=	--include stm32f30x_conf.h 
++CFLAGS	+=	$(patsubst %,-I%,$(INCLUDEPATH))
++
++SRCS	=	stm32f30x_adc.c stm32f30x_can.c stm32f30x_comp.c stm32f30x_crc.c \
++		stm32f30x_dac.c stm32f30x_dbgmcu.c stm32f30x_dma.c \
++		stm32f30x_exti.c stm32f30x_flash.c stm32f30x_gpio.c \
++		stm32f30x_i2c.c stm32f30x_iwdg.c stm32f30x_misc.c stm32f30x_opamp.c \
++		stm32f30x_pwr.c stm32f30x_rcc.c stm32f30x_rtc.c stm32f30x_spi.c \
++		stm32f30x_syscfg.c stm32f30x_tim.c stm32f30x_usart.c \
++		stm32f30x_wwdg.c usb_core.c usb_init.c usb_int.c usb_mem.c \
++		usb_regs.c usb_sil.c
++
++OBJS = $(addprefix objs/,$(SRCS:.c=.o))
++DEPS = $(addprefix deps/,$(SRCS:.c=.d))
++
++.PHONY: all clean
++
++all: $(LIB)
++
++install:	all
++	cp $(patsubst %,%/*.h,$(INCLUDEPATH)) ../inst
++	cp $(LIB) ../inst
++
++-include $(DEPS)
++
++dirs: deps objs
++deps objs:
++	@mkdir -p $@
++
++objs/%.o : %.c dirs
++	$(CC) $(CFLAGS) -c -o $@ $< -MMD -MF deps/$(*F).d
++
++$(LIB): $(OBJS)
++	$(AR) -r $@ $(OBJS)
++
++clean:
++	rm -f dirs $(OBJS) $(DEPS) $(LIB)
++	rmdir deps objs
+diff --git c/Libraries/stm32f30x_conf.h w/Libraries/stm32f30x_conf.h
+new file mode 100644
+index 0000000..abcae8a
+--- /dev/null
++++ w/Libraries/stm32f30x_conf.h
+@@ -0,0 +1,82 @@
++/**
++  ******************************************************************************
++  * @file    stm32f30x_conf.h 
++  * @author  MCD Application Team
++  * @version V1.1.0
++  * @date    20-September-2012
++  * @brief   Library configuration file.
++  ******************************************************************************
++  * @attention
++  *
++  * <h2><center>&copy; COPYRIGHT 2012 STMicroelectronics</center></h2>
++  *
++  * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
++  * You may not use this file except in compliance with the License.
++  * You may obtain a copy of the License at:
++  *
++  *        http://www.st.com/software_license_agreement_liberty_v2
++  *
++  * Unless required by applicable law or agreed to in writing, software 
++  * distributed under the License is distributed on an "AS IS" BASIS, 
++  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++  * See the License for the specific language governing permissions and
++  * limitations under the License.
++  *
++  ******************************************************************************
++  */
++
++/* Define to prevent recursive inclusion -------------------------------------*/
++#ifndef __STM32F30X_CONF_H
++#define __STM32F30X_CONF_H
++
++/* Includes ------------------------------------------------------------------*/
++/* Comment the line below to disable peripheral header file inclusion */
++#include "stm32f30x_adc.h"
++#include "stm32f30x_can.h"
++#include "stm32f30x_crc.h"
++#include "stm32f30x_comp.h"
++#include "stm32f30x_dac.h"
++#include "stm32f30x_dbgmcu.h"
++#include "stm32f30x_dma.h"
++#include "stm32f30x_exti.h"
++#include "stm32f30x_flash.h"
++#include "stm32f30x_gpio.h"
++#include "stm32f30x_syscfg.h"
++#include "stm32f30x_i2c.h"
++#include "stm32f30x_iwdg.h"
++#include "stm32f30x_opamp.h"
++#include "stm32f30x_pwr.h"
++#include "stm32f30x_rcc.h"
++#include "stm32f30x_rtc.h"
++#include "stm32f30x_spi.h"
++#include "stm32f30x_tim.h"
++#include "stm32f30x_usart.h"
++#include "stm32f30x_wwdg.h"
++#include "stm32f30x_misc.h"  /* High level functions for NVIC and SysTick (add-on to CMSIS functions) */
++
++/* Exported types ------------------------------------------------------------*/
++/* Exported constants --------------------------------------------------------*/
++/* Uncomment the line below to expanse the "assert_param" macro in the 
++   Standard Peripheral Library drivers code */
++/* #define USE_FULL_ASSERT    1 */
++
++/* Exported macro ------------------------------------------------------------*/
++#ifdef  USE_FULL_ASSERT
++
++/**
++  * @brief  The assert_param macro is used for function's parameters check.
++  * @param  expr: If expr is false, it calls assert_failed function which reports 
++  *         the name of the source file and the source line number of the call 
++  *         that failed. If expr is true, it returns no value.
++  * @retval None
++  */
++  #define assert_param(expr) ((expr) ? (void)0 : assert_failed((uint8_t *)__FILE__, __LINE__))
++/* Exported functions ------------------------------------------------------- */
++  void assert_failed(uint8_t* file, uint32_t line);
++#else
++  #define assert_param(expr) ((void)0)
++#endif /* USE_FULL_ASSERT */
++
++#endif /* __STM32F30X_CONF_H */
++
++/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+diff --git c/Libraries/usb_conf.h w/Libraries/usb_conf.h
+new file mode 100644
+index 0000000..db3355f
+--- /dev/null
++++ w/Libraries/usb_conf.h
+@@ -0,0 +1 @@
++/* Not needed */
+diff --git c/inst/.gitignore w/inst/.gitignore
+new file mode 100644
+index 0000000..e69de29
