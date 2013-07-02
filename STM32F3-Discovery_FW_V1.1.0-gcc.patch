@@ -9,6 +9,81 @@ index 0000000..83d036b
 +*.a
 +objs
 +inst
+diff --git c/Libraries/CMSIS/Include/core_cm0.h w/Libraries/CMSIS/Include/core_cm0.h
+index 9e707d7..fa22aad 100644
+--- c/Libraries/CMSIS/Include/core_cm0.h
++++ w/Libraries/CMSIS/Include/core_cm0.h
+@@ -73,8 +73,8 @@
+ 
+ #elif defined ( __GNUC__ )
+   #define __ASM            __asm                                      /*!< asm keyword for GNU Compiler          */
+-  #define __INLINE         inline                                     /*!< inline keyword for GNU Compiler       */
+-  #define __STATIC_INLINE  static inline
++  #define __INLINE         __attribute__((always_inline)) inline      /*!< inline keyword for GNU Compiler       */
++  #define __STATIC_INLINE  __attribute__((always_inline)) static inline
+ 
+ #elif defined ( __TASKING__ )
+   #define __ASM            __asm                                      /*!< asm keyword for TASKING Compiler      */
+diff --git c/Libraries/CMSIS/Include/core_cm3.h w/Libraries/CMSIS/Include/core_cm3.h
+index efac390..ae8c5fc 100644
+--- c/Libraries/CMSIS/Include/core_cm3.h
++++ w/Libraries/CMSIS/Include/core_cm3.h
+@@ -77,8 +77,8 @@
+ 
+ #elif defined ( __GNUC__ )
+   #define __ASM            __asm                                      /*!< asm keyword for GNU Compiler          */
+-  #define __INLINE         inline                                     /*!< inline keyword for GNU Compiler       */
+-  #define __STATIC_INLINE  static inline
++  #define __INLINE         __attribute__((always_inline)) inline      /*!< inline keyword for GNU Compiler       */
++  #define __STATIC_INLINE  __attribute__((always_inline)) static inline
+ 
+ #elif defined ( __TASKING__ )
+   #define __ASM            __asm                                      /*!< asm keyword for TASKING Compiler      */
+diff --git c/Libraries/CMSIS/Include/core_cm4.h w/Libraries/CMSIS/Include/core_cm4.h
+index ef818e4..65e5325 100644
+--- c/Libraries/CMSIS/Include/core_cm4.h
++++ w/Libraries/CMSIS/Include/core_cm4.h
+@@ -77,8 +77,8 @@
+ 
+ #elif defined ( __GNUC__ )
+   #define __ASM            __asm                                      /*!< asm keyword for GNU Compiler          */
+-  #define __INLINE         inline                                     /*!< inline keyword for GNU Compiler       */
+-  #define __STATIC_INLINE  static inline
++  #define __INLINE         __attribute__((always_inline)) inline      /*!< inline keyword for GNU Compiler       */
++  #define __STATIC_INLINE  __attribute__((always_inline)) static inline
+ 
+ #elif defined ( __TASKING__ )
+   #define __ASM            __asm                                      /*!< asm keyword for TASKING Compiler      */
+diff --git c/Libraries/CMSIS/Include/core_sc000.h w/Libraries/CMSIS/Include/core_sc000.h
+index d35b4c2..e2e9ce2 100644
+--- c/Libraries/CMSIS/Include/core_sc000.h
++++ w/Libraries/CMSIS/Include/core_sc000.h
+@@ -73,8 +73,8 @@
+ 
+ #elif defined ( __GNUC__ )
+   #define __ASM            __asm                                      /*!< asm keyword for GNU Compiler          */
+-  #define __INLINE         inline                                     /*!< inline keyword for GNU Compiler       */
+-  #define __STATIC_INLINE  static inline
++  #define __INLINE         __attribute__((always_inline)) inline      /*!< inline keyword for GNU Compiler       */
++  #define __STATIC_INLINE  __attribute__((always_inline)) static inline
+ 
+ #elif defined ( __TASKING__ )
+   #define __ASM            __asm                                      /*!< asm keyword for TASKING Compiler      */
+diff --git c/Libraries/CMSIS/Include/core_sc300.h w/Libraries/CMSIS/Include/core_sc300.h
+index 7fdc8ee..5f7f1ea 100644
+--- c/Libraries/CMSIS/Include/core_sc300.h
++++ w/Libraries/CMSIS/Include/core_sc300.h
+@@ -73,8 +73,8 @@
+ 
+ #elif defined ( __GNUC__ )
+   #define __ASM            __asm                                      /*!< asm keyword for GNU Compiler          */
+-  #define __INLINE         inline                                     /*!< inline keyword for GNU Compiler       */
+-  #define __STATIC_INLINE  static inline
++  #define __INLINE         __attribute__((always_inline)) inline      /*!< inline keyword for GNU Compiler       */
++  #define __STATIC_INLINE  __attribute__((always_inline)) static inline
+ 
+ #elif defined ( __TASKING__ )
+   #define __ASM            __asm                                      /*!< asm keyword for TASKING Compiler      */
 diff --git c/Libraries/STM32_USB-FS-Device_Driver/inc/usb_sil.h w/Libraries/STM32_USB-FS-Device_Driver/inc/usb_sil.h
 index 0e941cc..b9d8fd0 100644
 --- c/Libraries/STM32_USB-FS-Device_Driver/inc/usb_sil.h
