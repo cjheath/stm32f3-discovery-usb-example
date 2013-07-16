@@ -1,18 +1,18 @@
-diff --git c/.gitignore w/.gitignore
+diff --git a/.gitignore b/.gitignore
 new file mode 100644
 index 0000000..83d036b
 --- /dev/null
-+++ w/.gitignore
++++ b/.gitignore
 @@ -0,0 +1,5 @@
 +deps
 +dirs
 +*.a
 +objs
 +inst
-diff --git c/Libraries/CMSIS/Include/core_cm0.h w/Libraries/CMSIS/Include/core_cm0.h
+diff --git a/Libraries/CMSIS/Include/core_cm0.h b/Libraries/CMSIS/Include/core_cm0.h
 index 9e707d7..fa22aad 100644
---- c/Libraries/CMSIS/Include/core_cm0.h
-+++ w/Libraries/CMSIS/Include/core_cm0.h
+--- a/Libraries/CMSIS/Include/core_cm0.h
++++ b/Libraries/CMSIS/Include/core_cm0.h
 @@ -73,8 +73,8 @@
  
  #elif defined ( __GNUC__ )
@@ -24,10 +24,10 @@ index 9e707d7..fa22aad 100644
  
  #elif defined ( __TASKING__ )
    #define __ASM            __asm                                      /*!< asm keyword for TASKING Compiler      */
-diff --git c/Libraries/CMSIS/Include/core_cm3.h w/Libraries/CMSIS/Include/core_cm3.h
+diff --git a/Libraries/CMSIS/Include/core_cm3.h b/Libraries/CMSIS/Include/core_cm3.h
 index efac390..ae8c5fc 100644
---- c/Libraries/CMSIS/Include/core_cm3.h
-+++ w/Libraries/CMSIS/Include/core_cm3.h
+--- a/Libraries/CMSIS/Include/core_cm3.h
++++ b/Libraries/CMSIS/Include/core_cm3.h
 @@ -77,8 +77,8 @@
  
  #elif defined ( __GNUC__ )
@@ -39,10 +39,10 @@ index efac390..ae8c5fc 100644
  
  #elif defined ( __TASKING__ )
    #define __ASM            __asm                                      /*!< asm keyword for TASKING Compiler      */
-diff --git c/Libraries/CMSIS/Include/core_cm4.h w/Libraries/CMSIS/Include/core_cm4.h
+diff --git a/Libraries/CMSIS/Include/core_cm4.h b/Libraries/CMSIS/Include/core_cm4.h
 index ef818e4..65e5325 100644
---- c/Libraries/CMSIS/Include/core_cm4.h
-+++ w/Libraries/CMSIS/Include/core_cm4.h
+--- a/Libraries/CMSIS/Include/core_cm4.h
++++ b/Libraries/CMSIS/Include/core_cm4.h
 @@ -77,8 +77,8 @@
  
  #elif defined ( __GNUC__ )
@@ -54,10 +54,10 @@ index ef818e4..65e5325 100644
  
  #elif defined ( __TASKING__ )
    #define __ASM            __asm                                      /*!< asm keyword for TASKING Compiler      */
-diff --git c/Libraries/CMSIS/Include/core_sc000.h w/Libraries/CMSIS/Include/core_sc000.h
+diff --git a/Libraries/CMSIS/Include/core_sc000.h b/Libraries/CMSIS/Include/core_sc000.h
 index d35b4c2..e2e9ce2 100644
---- c/Libraries/CMSIS/Include/core_sc000.h
-+++ w/Libraries/CMSIS/Include/core_sc000.h
+--- a/Libraries/CMSIS/Include/core_sc000.h
++++ b/Libraries/CMSIS/Include/core_sc000.h
 @@ -73,8 +73,8 @@
  
  #elif defined ( __GNUC__ )
@@ -69,10 +69,10 @@ index d35b4c2..e2e9ce2 100644
  
  #elif defined ( __TASKING__ )
    #define __ASM            __asm                                      /*!< asm keyword for TASKING Compiler      */
-diff --git c/Libraries/CMSIS/Include/core_sc300.h w/Libraries/CMSIS/Include/core_sc300.h
+diff --git a/Libraries/CMSIS/Include/core_sc300.h b/Libraries/CMSIS/Include/core_sc300.h
 index 7fdc8ee..5f7f1ea 100644
---- c/Libraries/CMSIS/Include/core_sc300.h
-+++ w/Libraries/CMSIS/Include/core_sc300.h
+--- a/Libraries/CMSIS/Include/core_sc300.h
++++ b/Libraries/CMSIS/Include/core_sc300.h
 @@ -73,8 +73,8 @@
  
  #elif defined ( __GNUC__ )
@@ -84,65 +84,11 @@ index 7fdc8ee..5f7f1ea 100644
  
  #elif defined ( __TASKING__ )
    #define __ASM            __asm                                      /*!< asm keyword for TASKING Compiler      */
-diff --git c/Libraries/STM32_USB-FS-Device_Driver/inc/usb_sil.h w/Libraries/STM32_USB-FS-Device_Driver/inc/usb_sil.h
-index 0e941cc..b9d8fd0 100644
---- c/Libraries/STM32_USB-FS-Device_Driver/inc/usb_sil.h
-+++ w/Libraries/STM32_USB-FS-Device_Driver/inc/usb_sil.h
-@@ -36,7 +36,7 @@
- /* Exported macro ------------------------------------------------------------*/
- /* Exported functions ------------------------------------------------------- */
- 
--uint32_t USB_SIL_Init(void);
-+uint32_t USB_SIL_Init(uint16_t interrupt_mask);
- uint32_t USB_SIL_Write(uint8_t bEpAddr, uint8_t* pBufferPointer, uint32_t wBufferSize);
- uint32_t USB_SIL_Read(uint8_t bEpAddr, uint8_t* pBufferPointer);
- 
-diff --git c/Libraries/STM32_USB-FS-Device_Driver/src/usb_sil.c w/Libraries/STM32_USB-FS-Device_Driver/src/usb_sil.c
-index 2419904..96b6cc8 100644
---- c/Libraries/STM32_USB-FS-Device_Driver/src/usb_sil.c
-+++ w/Libraries/STM32_USB-FS-Device_Driver/src/usb_sil.c
-@@ -45,14 +45,13 @@
- * Output         : None.
- * Return         : Status.
- *******************************************************************************/
--uint32_t USB_SIL_Init(void)
-+uint32_t USB_SIL_Init(uint16_t interrupt_mask)
- {
-   /* USB interrupts initialization */
-   /* clear pending interrupts */
-   _SetISTR(0);
--  wInterrupt_Mask = IMR_MSK;
-   /* set interrupts mask */
--  _SetCNTR(wInterrupt_Mask);
-+  _SetCNTR(interrupt_mask);
-   return 0;
- }
- 
-diff --git c/Libraries/hw_config.h w/Libraries/hw_config.h
+diff --git a/Libraries/Makefile b/Libraries/Makefile
 new file mode 100644
-index 0000000..99f2fd4
+index 0000000..8c6bf89
 --- /dev/null
-+++ w/Libraries/hw_config.h
-@@ -0,0 +1,14 @@
-+/*
-+ * Definitions to rename the global variables in the USB support library
-+ */
-+#define	Data_Mul_MaxPacketSize	USB_Data_Mul_MaxPacketSize
-+#define	StatusInfo		USB_StatusInfo
-+#define	Device_Info		USB_Device_Info
-+#define	EPindex			USB_EPindex
-+#define	SaveState		USB_SaveState
-+#define	pInformation		USB_pInformation
-+#define	pProperty		USB_pProperty
-+#define	pUser_Standard_Requests	USB_pUser_Standard_Requests
-+#define	wInterrupt_Mask		USB_wInterrupt_Mask
-+#define	SaveRState		USB_SaveRState
-+#define	SaveTState		USB_SaveTState
-diff --git c/Libraries/stm32f3.gmk w/Libraries/stm32f3.gmk
-new file mode 100644
-index 0000000..48aad51
---- /dev/null
-+++ w/Libraries/stm32f3.gmk
++++ b/Libraries/Makefile
 @@ -0,0 +1,55 @@
 +#
 +# Makefile to build the core STM32F3 library.
@@ -181,8 +127,8 @@ index 0000000..48aad51
 +all: $(LIB)
 +
 +install:	all
-+	cp $(patsubst %,%/*.h,$(INCLUDEPATH)) ../inst
-+	cp $(LIB) ../inst
++	cp -f $(patsubst %,%/*.h,$(INCLUDEPATH)) ../inst
++	cp -f $(LIB) ../inst
 +
 +-include $(DEPS)
 +
@@ -199,11 +145,78 @@ index 0000000..48aad51
 +clean:
 +	rm -f dirs $(OBJS) $(DEPS) $(LIB)
 +	rmdir deps objs
-diff --git c/Libraries/stm32f30x_conf.h w/Libraries/stm32f30x_conf.h
+diff --git a/Libraries/STM32F30x_StdPeriph_Driver/src/stm32f30x_tim.c b/Libraries/STM32F30x_StdPeriph_Driver/src/stm32f30x_tim.c
+index 1ec0ed9..b7cbf48 100644
+--- a/Libraries/STM32F30x_StdPeriph_Driver/src/stm32f30x_tim.c
++++ b/Libraries/STM32F30x_StdPeriph_Driver/src/stm32f30x_tim.c
+@@ -120,7 +120,7 @@
+ #include "stm32f30x_tim.h"
+ #include "stm32f30x_rcc.h"
+ 
+-/** @addtogroup STM32F2xx_StdPeriph_Driver
++/** @addtogroup STM32F30x_StdPeriph_Driver
+   * @{
+   */
+ 
+diff --git a/Libraries/STM32_USB-FS-Device_Driver/inc/usb_sil.h b/Libraries/STM32_USB-FS-Device_Driver/inc/usb_sil.h
+index 0e941cc..b9d8fd0 100644
+--- a/Libraries/STM32_USB-FS-Device_Driver/inc/usb_sil.h
++++ b/Libraries/STM32_USB-FS-Device_Driver/inc/usb_sil.h
+@@ -36,7 +36,7 @@
+ /* Exported macro ------------------------------------------------------------*/
+ /* Exported functions ------------------------------------------------------- */
+ 
+-uint32_t USB_SIL_Init(void);
++uint32_t USB_SIL_Init(uint16_t interrupt_mask);
+ uint32_t USB_SIL_Write(uint8_t bEpAddr, uint8_t* pBufferPointer, uint32_t wBufferSize);
+ uint32_t USB_SIL_Read(uint8_t bEpAddr, uint8_t* pBufferPointer);
+ 
+diff --git a/Libraries/STM32_USB-FS-Device_Driver/src/usb_sil.c b/Libraries/STM32_USB-FS-Device_Driver/src/usb_sil.c
+index 2419904..96b6cc8 100644
+--- a/Libraries/STM32_USB-FS-Device_Driver/src/usb_sil.c
++++ b/Libraries/STM32_USB-FS-Device_Driver/src/usb_sil.c
+@@ -45,14 +45,13 @@
+ * Output         : None.
+ * Return         : Status.
+ *******************************************************************************/
+-uint32_t USB_SIL_Init(void)
++uint32_t USB_SIL_Init(uint16_t interrupt_mask)
+ {
+   /* USB interrupts initialization */
+   /* clear pending interrupts */
+   _SetISTR(0);
+-  wInterrupt_Mask = IMR_MSK;
+   /* set interrupts mask */
+-  _SetCNTR(wInterrupt_Mask);
++  _SetCNTR(interrupt_mask);
+   return 0;
+ }
+ 
+diff --git a/Libraries/hw_config.h b/Libraries/hw_config.h
+new file mode 100644
+index 0000000..99f2fd4
+--- /dev/null
++++ b/Libraries/hw_config.h
+@@ -0,0 +1,14 @@
++/*
++ * Definitions to rename the global variables in the USB support library
++ */
++#define	Data_Mul_MaxPacketSize	USB_Data_Mul_MaxPacketSize
++#define	StatusInfo		USB_StatusInfo
++#define	Device_Info		USB_Device_Info
++#define	EPindex			USB_EPindex
++#define	SaveState		USB_SaveState
++#define	pInformation		USB_pInformation
++#define	pProperty		USB_pProperty
++#define	pUser_Standard_Requests	USB_pUser_Standard_Requests
++#define	wInterrupt_Mask		USB_wInterrupt_Mask
++#define	SaveRState		USB_SaveRState
++#define	SaveTState		USB_SaveTState
+diff --git a/Libraries/stm32f30x_conf.h b/Libraries/stm32f30x_conf.h
 new file mode 100644
 index 0000000..abcae8a
 --- /dev/null
-+++ w/Libraries/stm32f30x_conf.h
++++ b/Libraries/stm32f30x_conf.h
 @@ -0,0 +1,82 @@
 +/**
 +  ******************************************************************************
@@ -287,13 +300,89 @@ index 0000000..abcae8a
 +#endif /* __STM32F30X_CONF_H */
 +
 +/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
-diff --git c/Libraries/usb_conf.h w/Libraries/usb_conf.h
+diff --git a/Libraries/usb_conf.h b/Libraries/usb_conf.h
 new file mode 100644
 index 0000000..db3355f
 --- /dev/null
-+++ w/Libraries/usb_conf.h
++++ b/Libraries/usb_conf.h
 @@ -0,0 +1 @@
 +/* Not needed */
-diff --git c/inst/.gitignore w/inst/.gitignore
+diff --git a/Makefile b/Makefile
+new file mode 100644
+index 0000000..1041873
+--- /dev/null
++++ b/Makefile
+@@ -0,0 +1,3 @@
++all install clean:
++	$(MAKE) -C Libraries $@
++	$(MAKE) -C Utilities $@
+diff --git a/Project/Peripheral_Examples/USB_Example/usb_prop.c b/Project/Peripheral_Examples/USB_Example/usb_prop.c
+index 90cad66..2949c18 100644
+--- a/Project/Peripheral_Examples/USB_Example/usb_prop.c
++++ b/Project/Peripheral_Examples/USB_Example/usb_prop.c
+@@ -139,7 +139,7 @@ void Joystick_init(void)
+   PowerOn();
+ 
+   /* Perform basic device initialization operations */
+-  USB_SIL_Init();
++  USB_SIL_Init(wInterrupt_Mask = IMR_MSK);
+ 
+   bDeviceState = UNCONNECTED;
+ }
+diff --git a/Utilities/Makefile b/Utilities/Makefile
+new file mode 100644
+index 0000000..9126c30
+--- /dev/null
++++ b/Utilities/Makefile
+@@ -0,0 +1,48 @@
++#
++# Makefile to build the core STM32F3 library.
++# Refined from mblythe86-stm32f3-discovery-basic-template.
++#
++LIB	=	libstm32f3-util.a
++
++PREFIX	=	arm-none-eabi-
++CC=$(PREFIX)gcc
++AR=$(PREFIX)ar
++
++vpath		%.c STM32F3_Discovery
++INCLUDEPATH =	../inst STM32F3_Discovery
++
++CFLAGS	=	-g -O2 -Wall
++CFLAGS	+=	-mlittle-endian -mthumb -mcpu=cortex-m4 -march=armv7e-m
++CFLAGS	+=	-mfpu=fpv4-sp-d16 -mfloat-abi=hard
++CFLAGS	+=	-ffreestanding -nostdlib
++CFLAGS	+=	--include stm32f30x_conf.h 
++CFLAGS	+=	$(patsubst %,-I%,$(INCLUDEPATH))
++
++SRCS	= 	stm32f3_discovery.c stm32f3_discovery_l3gd20.c stm32f3_discovery_lsm303dlhc.c
++
++OBJS = $(addprefix objs/,$(SRCS:.c=.o))
++DEPS = $(addprefix deps/,$(SRCS:.c=.d))
++
++.PHONY: all clean
++
++all: $(LIB)
++
++install:	all
++	cp -f $(patsubst %,%/*.h,STM32F3_Discovery) ../inst
++	cp -f $(LIB) ../inst
++
++-include $(DEPS)
++
++dirs: deps objs
++deps objs:
++	@mkdir -p $@
++
++objs/%.o : %.c dirs
++	$(CC) $(CFLAGS) -c -o $@ $< -MMD -MF deps/$(*F).d
++
++$(LIB): $(OBJS)
++	$(AR) -r $@ $(OBJS)
++
++clean:
++	rm -f dirs $(OBJS) $(DEPS) $(LIB)
++	rmdir deps objs
+diff --git a/inst/.gitignore b/inst/.gitignore
 new file mode 100644
 index 0000000..e69de29

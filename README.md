@@ -21,16 +21,15 @@ directory and say:
 
     patch -p1 < ../stm32f3-discovery-basic-template/STM32F3-Discovery_FW_V1.1.0-gcc.patch
 
-This should cleanly apply the patch to a number of files. Change directory into
-the **Libraries** directory and say:
+This should cleanly apply the patch to a number of files. Then say:
 
-    make install -f stm32f3.gmk
+    make install
 
 This should create an **inst** directory (under the top-level ST firmware
-directory) containing a compiled code library and copies of all header files
+directory) containing two compiled code libraries and copies of all header files
 required to build applications.
 
-Now change back to the application template directory and build the application by saying:
+Now change back to this application template directory and build the application by saying:
 
     make
 
