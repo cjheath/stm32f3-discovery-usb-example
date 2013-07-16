@@ -1,8 +1,11 @@
-#STM32F3-Discovery Application Template
-This is a template application for the STM32F30x ARM microcontrollers
+#STM32F3-Discovery USB Example application
+
+A USB Joystick implemented using the accelerometers in the STM32F3 Discovery board.
+
+This is a use of the template application for the STM32F30x ARM microcontrollers
 that compiles with GNU tools.
 
-It serves as a quick-start for those who do not wish to use an IDE, but rather
+The template serves as a quick-start for those who do not wish to use an IDE, but rather
 develop in a text editor of choice and build from the command line. It is
 derived from [mblythe's version](https://github.com/mblythe86/stm32f3-discovery-basic-template),
 which also credits other sources.

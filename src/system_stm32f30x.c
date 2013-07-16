@@ -14,9 +14,9 @@
   *            - PLL_SOURCE_HSE                : HSE (8MHz) used to clock the PLL, and 
   *                                              the PLL is used as system clock source.
   *            - PLL_SOURCE_HSE_BYPASS(default): HSE bypassed with an external clock 
-  *                                              (8MHz, coming from ST-Link) used to clock
-  *                                              the PLL, and the PLL is used as system
-  *                                              clock source.  
+  *                                             (8MHz, coming from ST-Link) used to clock
+  *                                             the PLL, and the PLL is used as system
+  *                                             clock source.  
   *
   *  
   * 1.  This file provides two functions and one global variable to be called from 
@@ -108,8 +108,8 @@
 
 //#define PLL_SOURCE_HSI        // HSI (~8MHz) used to clock the PLL, and the PLL is used as system clock source
 //#define PLL_SOURCE_HSE        // HSE (8MHz) used to clock the PLL, and the PLL is used as system clock source
-#define PLL_SOURCE_HSE_BYPASS   // HSE bypassed with an external clock (8MHz, coming from ST-Link) used to clock
-                                // the PLL, and the PLL is used as system clock source
+#define PLL_SOURCE_HSE_BYPASS // HSE bypassed with an external clock (8MHz, coming from ST-Link) used to clock
+                              // the PLL, and the PLL is used as system clock source
                                                                 
 /**
   * @}
@@ -127,9 +127,9 @@
   * @{
   */
 
-uint32_t SystemCoreClock = 72000000;
+  uint32_t SystemCoreClock = 72000000;
 
-__I uint8_t AHBPrescTable[16] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 6, 7, 8, 9};
+  __I uint8_t AHBPrescTable[16] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 6, 7, 8, 9};
 
 /**
   * @}
@@ -302,7 +302,7 @@ static void SetSysClock(void)
   RCC->CFGR |= (uint32_t)RCC_CFGR_HPRE_DIV1;
       
   /* PCLK = HCLK */
-  RCC->CFGR |= (uint32_t)RCC_CFGR_PPRE1_DIV2 | (uint32_t)RCC_CFGR_PPRE2_DIV1;
+  RCC->CFGR |= (uint32_t)RCC_CFGR_PPRE1_DIV1 | (uint32_t)RCC_CFGR_PPRE2_DIV1;
 
   /* PLL configuration */
   RCC->CFGR &= (uint32_t)((uint32_t)~(RCC_CFGR_PLLSRC | RCC_CFGR_PLLXTPRE | RCC_CFGR_PLLMULL));

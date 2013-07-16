@@ -4,7 +4,9 @@
 #
 
 #	Your *.c source files here:
-SRCS = main.c errno.c stm32f3_discovery.c system_stm32f30x.c
+SRCS = \
+	main.c errno.c hw_config.c stm32f30x_it.c stm32f3_discovery.c system_stm32f30x.c \
+	usb_desc.c usb_endp.c usb_istr.c usb_prop.c usb_pwr.c
 
 # all the files will be generated with this name (main.elf, main.bin, main.hex, etc)
 PROJ_NAME=main
@@ -73,7 +75,7 @@ objs/%.o : src/%.c dirs
 	$(CC) $(CFLAGS) -c -o $@ $< -MMD -MF deps/$(*F).d
 
 $(PROJ_NAME).elf: $(OBJS)
-	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@ $(STARTUP) -L$(STD_PERIPH_LIB) -lstm32f3 -L$(LDSCRIPT_INC) -Tstm32f3.ld
+	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@ $(STARTUP) -L$(STD_PERIPH_LIB) -lstm32f3-util -lstm32f3 -L$(LDSCRIPT_INC) -Tstm32f3.ld
 	$(OBJCOPY) -O ihex $(PROJ_NAME).elf $(PROJ_NAME).hex
 	$(OBJCOPY) -O binary $(PROJ_NAME).elf $(PROJ_NAME).bin
 	$(OBJDUMP) -St $(PROJ_NAME).elf >$(PROJ_NAME).lst
