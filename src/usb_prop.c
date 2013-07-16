@@ -16,8 +16,8 @@
   *
   *        http://www.st.com/software_license_agreement_liberty_v2
   *
-  * Unless required by applicable law or agreed to in writing, software 
-  * distributed under the License is distributed on an "AS IS" BASIS, 
+  * Unless required by applicable law or agreed to in writing, software
+  * distributed under the License is distributed on an "AS IS" BASIS,
   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   * See the License for the specific language governing permissions and
   * limitations under the License.
@@ -39,7 +39,7 @@
 
 /** @addtogroup USB_Example
   * @{
-  */ 
+  */
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -368,7 +368,7 @@ RESULT Joystick_Get_Interface_Setting(uint8_t Interface, uint8_t AlternateSettin
 /**
   * @brief  Joystick Set Protocol request routine.
   * @param  None.
-  * @retval USB_SUCCESS 
+  * @retval USB_SUCCESS
   */
 RESULT Joystick_SetProtocol(void)
 {
@@ -380,7 +380,7 @@ RESULT Joystick_SetProtocol(void)
 /**
   * @brief  Get the protocol value
   * @param  Length: length
-  * @retval address of the protocol value. 
+  * @retval address of the protocol value.
   */
 uint8_t *Joystick_GetProtocolValue(uint16_t Length)
 {
@@ -397,10 +397,10 @@ uint8_t *Joystick_GetProtocolValue(uint16_t Length)
 
 /**
   * @}
-  */ 
+  */
 
 /**
   * @}
-  */ 
+  */
 
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/ 
+/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

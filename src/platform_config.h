@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * @file    USB_Example/platform_config.h 
+  * @file    USB_Example/platform_config.h
   * @author  MCD Application Team
   * @version V1.1.0
   * @date    20-September-2012
@@ -16,8 +16,8 @@
   *
   *        http://www.st.com/software_license_agreement_liberty_v2
   *
-  * Unless required by applicable law or agreed to in writing, software 
-  * distributed under the License is distributed on an "AS IS" BASIS, 
+  * Unless required by applicable law or agreed to in writing, software
+  * distributed under the License is distributed on an "AS IS" BASIS,
   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   * See the License for the specific language governing permissions and
   * limitations under the License.
@@ -57,10 +57,10 @@
   #error "Missing define Please Define Your Interrupt Mode By UnComment Line in platform_config.h File"
 #endif
 
-  #define USB_DISCONNECT                      GPIOE  
+  #define USB_DISCONNECT                      GPIOE
   #define USB_DISCONNECT_PIN                  GPIO_Pin_14
   #define RCC_AHBPeriph_GPIO_DISCONNECT       RCC_AHBPeriph_GPIOE
-                                     
+
 #define RCC_AHBPeriph_ALLGPIO                 (RCC_AHBPeriph_GPIOA \
                                               | RCC_AHBPeriph_GPIOB \
                                               | RCC_AHBPeriph_GPIOC \

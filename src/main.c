@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * @file    USB_Example/main.c  
+  * @file    USB_Example/main.c
   * @author  MCD Application Team
   * @version V1.1.0
   * @date    20-September-2012
@@ -16,8 +16,8 @@
   *
   *        http://www.st.com/software_license_agreement_liberty_v2
   *
-  * Unless required by applicable law or agreed to in writing, software 
-  * distributed under the License is distributed on an "AS IS" BASIS, 
+  * Unless required by applicable law or agreed to in writing, software
+  * distributed under the License is distributed on an "AS IS" BASIS,
   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   * See the License for the specific language governing permissions and
   * limitations under the License.
@@ -35,7 +35,7 @@
 
 /** @addtogroup USB_Example
   * @{
-  */ 
+  */
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -63,37 +63,37 @@ static uint8_t *USBD_HID_GetPos (void);
 
 /**
   * @brief  Main program.
-  * @param  None 
+  * @param  None
   * @retval None
   */
 int main(void)
-{  
+{
   uint8_t i = 0;
   /* SysTick end of count event each 10ms */
   RCC_GetClocksFreq(&RCC_Clocks);
   SysTick_Config(RCC_Clocks.HCLK_Frequency / 100);
-    
+
   /* Configure the USB */
   USB_Config();
-  
+
   /* Accelerometer Configuration */
   Acc_Config();
-  
+
   /* Infinite loop */
   while (1)
-  {      
-    
+  {
+
     /* Wait for data ready */
-    while(DataReady !=0x04)
+    while(DataReady !=0x02)
     {}
     DataReady = 0x00;
-    
+
     /* Get Data Accelerometer */
     Acc_ReadData(AccBuffer);
-    
+
     for(i=0;i<3;i++)
       AccBuffer[i] /= 100.0f;
-    
+
     /* Get position */
     Mouse_Buffer = USBD_HID_GetPos();
     /* Update the cursor position */
@@ -101,10 +101,10 @@ int main(void)
     {
       /* Reset the control token to inform upper layer that a transfer is ongoing */
       PrevXferComplete = 0;
-      
+
       /* Copy mouse position info in ENDP1 Tx Packet Memory Area*/
       USB_SIL_Write(EP1_IN, Mouse_Buffer, 4);
-      
+
       /* Enable endpoint for transmission */
       SetEPTxValid(ENDP1);
     }
@@ -121,7 +121,7 @@ void USB_Config(void)
   Set_System();
   Set_USBClock();
   USB_Interrupts_Config();
-  
+
   USB_Init();
 
   while (bDeviceState != CONFIGURED)
@@ -136,7 +136,7 @@ void USB_Config(void)
 static uint8_t *USBD_HID_GetPos (void)
 {
   static uint8_t HID_Buffer[4] = {0};
-  
+
   HID_Buffer[1] = 0;
   HID_Buffer[2] = 0;
   /* LEFT Direction */
@@ -144,22 +144,22 @@ static uint8_t *USBD_HID_GetPos (void)
   {
     HID_Buffer[1] += CURSOR_STEP;
   }
-  /* RIGHT Direction */ 
+  /* RIGHT Direction */
   if(((int8_t)AccBuffer[1]) > 2)
   {
    HID_Buffer[1] -= CURSOR_STEP;
-  } 
+  }
   /* UP Direction */
   if(((int8_t)AccBuffer[0]) < -2)
   {
     HID_Buffer[2] += CURSOR_STEP;
   }
-  /* DOWN Direction */ 
+  /* DOWN Direction */
   if(((int8_t)AccBuffer[0]) > 2)
   {
     HID_Buffer[2] -= CURSOR_STEP;
-  } 
-  
+  }
+
   return HID_Buffer;
 }
 
@@ -172,7 +172,7 @@ void Acc_Config(void)
 {
   LSM303DLHCAcc_InitTypeDef LSM303DLHCAcc_InitStructure;
   LSM303DLHCAcc_FilterConfigTypeDef LSM303DLHCFilter_InitStructure;
-    
+
    /* Fill the accelerometer structure */
   LSM303DLHCAcc_InitStructure.Power_Mode = LSM303DLHC_NORMAL_MODE;
   LSM303DLHCAcc_InitStructure.AccOutput_DataRate = LSM303DLHC_ODR_50_HZ;
@@ -183,7 +183,7 @@ void Acc_Config(void)
   LSM303DLHCAcc_InitStructure.High_Resolution=LSM303DLHC_HR_ENABLE;
   /* Configure the accelerometer main parameters */
   LSM303DLHC_AccInit(&LSM303DLHCAcc_InitStructure);
-  
+
   /* Fill the accelerometer LPF structure */
   LSM303DLHCFilter_InitStructure.HighPassFilter_Mode_Selection =LSM303DLHC_HPM_NORMAL_MODE;
   LSM303DLHCFilter_InitStructure.HighPassFilter_CutOff_Frequency = LSM303DLHC_HPFCF_16;
@@ -206,12 +206,12 @@ void Acc_ReadData(float* pfData)
   float LSM_Acc_Sensitivity = LSM_Acc_Sensitivity_2g;
   uint8_t buffer[6], cDivider;
   uint8_t i = 0;
-  
+
   /* Read the register content */
   LSM303DLHC_Read(ACC_I2C_ADDRESS, LSM303DLHC_CTRL_REG4_A, ctrlx,2);
   LSM303DLHC_Read(ACC_I2C_ADDRESS, LSM303DLHC_OUT_X_L_A, buffer, 6);
- 
-  
+
+
   if(ctrlx[1]&0x40)
     cDivider=64;
   else
@@ -276,7 +276,7 @@ uint32_t LSM303DLHC_TIMEOUT_UserCallback(void)
 {
   /* Block communication and all processes */
   while (1)
-  {   
+  {
   }
 }
 
@@ -290,7 +290,7 @@ uint32_t LSM303DLHC_TIMEOUT_UserCallback(void)
   * @retval None
   */
 void assert_failed(uint8_t* file, uint32_t line)
-{ 
+{
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
 
@@ -303,10 +303,10 @@ void assert_failed(uint8_t* file, uint32_t line)
 
 /**
   * @}
-  */ 
+  */
 
 /**
   * @}
-  */ 
+  */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
