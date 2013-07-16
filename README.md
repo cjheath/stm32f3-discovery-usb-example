@@ -24,7 +24,7 @@ directory and say:
 This should cleanly apply the patch to a number of files. Change directory into
 the **Libraries** directory and say:
 
-    make install
+    make install -f stm32f3.gmk
 
 This should create an **inst** directory (under the top-level ST firmware
 directory) containing a compiled code library and copies of all header files
